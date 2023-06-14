@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import axios from 'axios';
 import swal from 'sweetalert';
 import preloader from './image/preloader.gif';
-import bg from './image/registerbg.png'
+
 import { Link } from "react-router-dom";
+import { ButtonForm, CenterDiv, Container, Fieldset, Form, FormDiv, Loader, Preloader } from "../Styled/Styled";
 
-
+const PORT = 8999;
 
 const FormRegister = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const FormRegister = () => {
     }));
   };
   const handleSubmit = async (event) => {
-    event.preventDefault();
+     event.preventDefault();
 
     if (formData.firstName.length < 3) {
       swal('ALERT', 'Name is required', 'error');
@@ -40,31 +40,27 @@ const FormRegister = () => {
     } else {
       try {
         setLoading(true);
-
-        const url = "http://localhost:8080/api/v1/auth/register";
+        const url = `http://localhost:${PORT}/api/v1/auth/register`;
         const response = await axios.post(url, formData);
-
         setLoading(false);
-
         const result = response.data;
-        const message = result.data.message;
-        console.log(result);
-        console.log(message);
+     
+        let message = result.data.message;
+        console.log(message)
+
         if (message === "Registration Successful") {
           swal('ALERT!', 'Kindly Check your inbox to verify your Email', 'success');
-
-        } else {
-          if (message === "Email Already exist") {
-            console.log(result.data);
-            swal('ALERT!', message, 'error');
-          } else {
-            throw new Error(result.data);
-          }
-        }
+        } 
       } catch (err) {
         setLoading(false);
-        console.log(err);
-        swal('ALERT', "Try again later", 'error');
+        if(err.response.data.data.message!=undefined){
+          console.log(err.response.data.data.message);
+          swal('ALERT', err.response.data.data.message, 'error');
+        }else{
+          swal('ALERT', "Try Again Later", 'error');
+        }
+        
+    
       }
     }
   };
@@ -79,7 +75,7 @@ const FormRegister = () => {
       : null}
          <FormDiv>
           <Form onSubmit={handleSubmit}>
-            <h1>Create an account</h1>
+            <h2>Create an account</h2>
             <p style={{margin:"0px",marginBottom:"50px"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
            
 
@@ -155,9 +151,9 @@ const FormRegister = () => {
               </Fieldset>
 
 
-            <Button>
+            <ButtonForm>
               Create Account
-            </Button>
+            </ButtonForm>
             <CenterDiv>
               <p>Already Registerd? <Link to="/login">Login</Link></p>
             </CenterDiv>
@@ -173,112 +169,3 @@ const FormRegister = () => {
 
 export default FormRegister;
 
-const Preloader =styled.div`
-width:100%;
-height:100vh;
-position:fixed;
-top:0px;
-left:0px;
-background:rgba(0,0,0,0.5);
-display:flex;
-justify-content:center;
-align-items:center
-`
-const Loader =styled.img`
-width:40px;
-height:40px;
-
-`
-
-const Container =styled.div`
-width:100%;
-height:auto;
-background: #F8F9FA;
-display:flex;
-@media(max-width:600px){
-  flex-direction:column;
-}
-`
-
-const FormDiv =styled.div`
-width:40%;
-height:auto;
-display:flex;
-justify-content:center;
-margin-bottom:30px;
-@media(max-width:600px){
-  width:100%;
-  
-}
-`
-const Form =styled.form`
-width:80%;
-height:auto;
-
-font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-color: #252D42;
-`
-const BackgroundImage = styled.div`
-width:60%;
-height:850px;
-background-image:url(${bg});
-background-size:cover;
-background-repeat:no-repeat;
-background-position: none;
-@media(max-width:600px){
-  display:none
-}
-`
-const Fieldset = styled.fieldset`
-margin-bottom:25px;
-height:50px;
-border: 1px solid rgba(37, 45, 66, 0.29);
-border-radius: 4px;
-color:#252D42;
-input{
-  width:100%;
-  height:100%;
-  border:0px;
-  outline:none;
-  font-size:15px;
-  background: #F8F9FA;
-
-}
-
-`
-
-const Button =styled.button
-`
-width: 100%;
-height: 48px;
-outline:none;
-border:0px;
-margin-bottom:30px;
-
-background: #FF5722;
-border-radius: 4px;
-transition-duration:0.5s;
-color:white;
-font-size:17px;
-
-&:hover{
-  background:pink
-}
-`
-const CenterDiv =styled.div`
-display:flex;
-justify-content:center;
-align-items:center;
-width:100%;
-
-p{
-
-color:#003366;
-a{
-  color:#FF5722;
-  text-decoration:none;
-
-}
-
-}
-`

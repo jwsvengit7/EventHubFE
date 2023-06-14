@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { EventDatas,ContentEvent } from "../../Styled/Styled";
 function EventData(props){
     return (
     <EventDatas>
@@ -18,22 +18,3 @@ function EventData(props){
 }
 export default EventData;
 
-const EventDatas =styled.div`
-width:32%;
-height:auto;
-background:white;
-margin-bottom:30px;
-@media(max-width:600px){
-    width:100%
-}
-
-`
-
-const ContentEvent= styled.div`
-width:100%;
-height:auto;
-display:flex;
-justify-content:space-around;
-
-
-`

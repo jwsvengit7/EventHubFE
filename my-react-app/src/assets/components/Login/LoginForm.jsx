@@ -48,8 +48,20 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         setLoading(false);
         const message = err.response.data.data.message;
         console.log(err.response.data.data)
-        window.location.replace("/verify-user")
-       
+        if(message=="Account Invalid"){
+          var x=0;
+          setInterval(() => {
+            x++;
+            if(x==5){
+              localStorage.setItem("email",formData.email)
+              window.location.replace("/verify-user")
+            }
+            
+          }, 1000);
+     
+        }
+      
+        
         
         swal('ALERT',message, 'error');
       }

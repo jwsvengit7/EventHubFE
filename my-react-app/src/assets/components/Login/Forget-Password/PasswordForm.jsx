@@ -15,16 +15,15 @@ export default  function  PasswordForm () {
     const token = searchParams.get('token');
     console.log(token)
     const [check,setCheck] =useState(false)
-    const [cpassword ,setCpassword] =useState("");
 
     const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    
+        password: "",
+        cpassword:""
       });
       const [loading, setLoading] = useState(false);
       const [message,setMessage] = useState("")
       const [showLogin,setShowLogin] = useState("")
+   
   
   
         useEffect(() => {
@@ -40,7 +39,6 @@ export default  function  PasswordForm () {
         console.log(1)
         console.log(response.response.data.data.message)
   
-
       })
       .catch(error => {
         console.error(error);
@@ -105,7 +103,7 @@ const handleChange = (event) => {
          <FormDiv>
          {(check) ?
           <Form  onSubmit={handleSubmit}>
-            <h2>Enter New Password</h2>
+            <h2>Reset Password</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                 Rem asperiores veniam ab quas
                 Commodi, velit cumque?</p>

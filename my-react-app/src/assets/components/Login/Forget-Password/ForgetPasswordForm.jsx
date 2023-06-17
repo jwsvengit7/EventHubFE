@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { BackgroundImage, ButtonForm, CenterDiv, Container, Fieldset, Form, FormDiv, Loader, Preloader } from "../../Styled/Styled";
+import { 
+  BackgroundImage, 
+  ButtonForm, 
+  CenterDiv, 
+  Container, 
+  Fieldset, 
+  Form, FormDiv, 
+  Loader, 
+  Preloader } from "../../Styled/Styled";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import preloader from '../../CreateAccount/image/preloader.gif'
@@ -44,7 +52,7 @@ const ForgetPasswordForm = ()=>{
          
           } catch (err) {
             setLoading(false);
-            const message = err
+            const message = err.data.data.message
             console.log(message)
           
             
@@ -65,7 +73,7 @@ const ForgetPasswordForm = ()=>{
           : null}
              <FormDiv>
               <Form onSubmit={handleSubmit} >
-                <h4>Forget Password Require Email</h4>
+                <h2>Forget Password </h2>
               
                   <Fieldset>
                     <legend>Enter Email </legend>

@@ -24,6 +24,7 @@ function App() {
     <Route path="/token/:token" element={<Token />} />
     <Route path="/app/dashboard" element={<Dashboard />} />
     <Route path="/tokens" element={<AuthenticatePassword />} />
+    <Route path="/checkout" element={<Chekout />} />
 
     </Routes>
     </Router>

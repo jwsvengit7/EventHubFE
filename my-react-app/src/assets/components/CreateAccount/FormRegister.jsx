@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 import preloader from './image/preloader.gif';
 
 import { Link } from "react-router-dom";
-import { ButtonForm, CenterDiv, Container, Fieldset, Form, FormDiv, Loader, Preloader } from "../Styled/Styled";
+import { BackgroundImage, ButtonForm, CenterDiv, Container, Fieldset, Form, FormDiv, Loader, Preloader } from "../Styled/Styled";
 
 const PORT = 8999;
 
@@ -40,7 +40,7 @@ const FormRegister = () => {
     } else {
       try {
         setLoading(true);
-        const url = `http://localhost:${PORT}/api/v1/auth/register`;
+        const url = `http://localhost:${PORT}/api/v1/auth/register-event-goer`;
         const response = await axios.post(url, formData);
         setLoading(false);
         const result = response.data;
@@ -124,9 +124,9 @@ const FormRegister = () => {
                 <legend>Date of Birth</legend>
                 <input
                   type="date"
-                  value={formData.dob}
+                  value={formData.dateOfBirth}
                   onChange={handleChange}
-                  name="dob"
+                  name="dateOfBirth"
                 />
               </Fieldset>
 

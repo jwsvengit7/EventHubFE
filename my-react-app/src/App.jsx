@@ -8,6 +8,8 @@ import Token from './assets/components/Login/Token/Token'
 import Dashboard from './assets/components/Dashboard/Dashboard'
 import ForgetPassword from './assets/components/Login/Forget-Password/ForgetPassword'
 import AuthenticatePassword from './assets/components/Login/Forget-Password/AuthenticatePassword'
+import EventDetails from './assets/components/EventDetails/EventDetails'
+
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
     <Route path="/token/:token" element={<Token />} />
     <Route path="/app/dashboard" element={<Dashboard />} />
     <Route path="/tokens" element={<AuthenticatePassword />} />
+    <Route path="/event-details" element={<EventDetails />} />
+
 
     </Routes>
     </Router>

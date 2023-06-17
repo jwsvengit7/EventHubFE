@@ -3,6 +3,7 @@ import { BackgroundImage, ButtonForm, CenterDiv, Container, Fieldset, Form, Form
 import { Link } from "react-router-dom";
 import axios from "axios";
 import preloader from '../../CreateAccount/image/preloader.gif'
+import swal from "sweetalert";
 const ForgetPasswordForm = ()=>{
   const PORT =8999
     const [formData, setFormData] = useState({
@@ -41,6 +42,7 @@ const ForgetPasswordForm = ()=>{
             localStorage.setItem(formData.email,"email")
             console.log(result);
             console.log(message);
+            swal("ALERT","CHECK YOUR EMAIL ","success")
          
           } catch (err) {
             setLoading(false);

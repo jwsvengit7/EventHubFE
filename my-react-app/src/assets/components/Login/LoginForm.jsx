@@ -40,18 +40,32 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
 
         const result = response.data;
         const message = result.data.message;
+        console.log(response)
         console.log(result);
-    
-
+         swal("ALERT",message,"success")
         
       } catch (err) {
         setLoading(false);
         const message = err.response.data.data.message;
-        console.log(err.response.data.data)
-        window.location.replace("/verify-user")
+        console.log(err.response.data.data.message)
+        
+        if(message=="Account is Disabled"){
+          swal('ALERT',message, 'error');
+          var x=0;
+          setInterval(() => {
+            x++;
+            if(x==3){
+              localStorage.setItem("email",formData.email)
+              window.location.replace("/verify-user")
+            }
+            
+          }, 1000);
+        
+        }
+        // 
        
         
-        swal('ALERT',message, 'error');
+       
       }
     }
   };
@@ -96,7 +110,6 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             </ButtonForm>
             <CenterDiv>
               <p>Don't have an Account? <Link to="/signup">Register</Link></p>
-            
             </CenterDiv>
             <center><p>or</p></center>
             <CenterDiv>

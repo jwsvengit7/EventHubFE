@@ -77,7 +77,7 @@ justify-content:space-around;
 
 export const BannerDiv =styled.div`
 width:100%;
-height:600px;
+height:660px;
 background-image:url(${bannerUrl});
 display:flex;
 justify-content:center;
@@ -423,14 +423,33 @@ outline:none;
 border:0px;
 margin-bottom:30px;
 
-background: #FF5722;
+background:#FF5722; 
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
 font-size:17px;
 
 &:hover{
-  background:pink
+  background:pink;
+}
+`
+
+export const ButtonFormWhite =styled.button
+`
+width: 100%;
+height: 48px;
+outline:none;
+border:0px;
+margin-bottom:30px;
+
+background: pink 
+border-radius: 4px;
+transition-duration:0.5s;
+color:white;
+font-size:17px;
+
+&:hover{
+  background:#FF5722;
 }
 `
 
@@ -498,3 +517,4 @@ export const Text = styled.p`
   text-align: center;
   border-radius:10px
 `;
+

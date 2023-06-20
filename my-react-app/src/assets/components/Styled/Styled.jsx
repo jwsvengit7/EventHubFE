@@ -424,6 +424,7 @@ border:0px;
 margin-bottom:30px;
 
 background:#FF5722; 
+
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
@@ -443,6 +444,7 @@ border:0px;
 margin-bottom:30px;
 
 background: pink 
+
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
@@ -517,4 +519,117 @@ export const Text = styled.p`
   text-align: center;
   border-radius:10px
 `;
+
+
+export const GobackDiv = styled.div`
+width:85%;
+height:400px;
+display:flex;
+justify-content:space-between
+`
+export const Divs =styled.div`
+width:40%;
+height:auto;
+`
+
+export const BuyModal =styled.div`
+width: 382px;
+height: 315px;
+background:white;
+border-radius: 10px;
+padding:30px;
+margin-top:70px
+`
+export const EventName =styled.div`
+
+width: 567px;
+height: 152px;
+margin-top:128px
+`
+
+export const Caption = styled.div`
+width: 525px;
+height: 99px;
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 33px;
+padding-top: 32px;
+`
+
+export const ModalCalender =styled.div`
+margin-bottom:30px
+`
+export const DetailedEvent =styled.div`
+width:85%;
+height: auto;
+margin-top: 100px;
+display: flex;
+justify-content: space-between;
+`
+export const EventDate = styled.div`
+width: 707px;
+height: 76px;
+font-weight: 600;
+font-size: 20px;
+line-height: 37px;
+color: #252D42;
+display: flex;
+justify-content: space-between
+`
+
+export const Setup=styled.div`
+
+width:100%;
+height:auto;
+margin-bottom:30px`
+export const Details =styled.div`
+width:100%;
+height:auto;
+display:flex;
+justify-content:space-between
+`
+
+export const DiviNFO =styled.div`
+width:40%;
+height:150px;
+`
+export const AccountNFO=styled.div`
+width:40%;
+height:150px;
+display:flex;
+align-items:center;
+justify-content:flex-end;
+a{
+text-decoration:none;
+color:#FF5722
+}
+
+`
+export const Select =styled.select`
+width:100%;
+height:100%;
+border:0px;
+outline:none;
+cursor:pointer
+`
+
+export const FormAccount =styled.form`
+width:86%;
+height:auto;
+background:white;
+padding:90px
+`
+export const MessageResponse =styled.div`
+width:99%;
+background:#FEFBE8;
+padding-left:10px;
+padding-top:20px;
+padding-bottom:20px;
+margin-bottom:15px;
+display: flex;
+align-items: center;
+font-size:13px
+
+`
 

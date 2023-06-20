@@ -1,6 +1,8 @@
 import './css/EventDetails.css'
 import styled from 'styled-components'
-import { BannerDiv, UpcomingEvents,EvnetsBody,ButtonForm,ButtonFormWhite } from '../Styled/Styled'
+
+import { BannerDiv,EventDate, UpcomingEvents,EvnetsBody,ButtonForm,ButtonFormWhite, GobackDiv, Divs, EventName, Caption, BuyModal, ModalCalender, DetailedEvent } from '../Styled/Styled'
+
 
 
 export default function EventDetail(){
@@ -59,59 +61,4 @@ export default function EventDetail(){
     )
 }
 
-const GobackDiv = styled.div`
-width:85%;
-height:400px;
-display:flex;
-justify-content:space-between
-`
-const Divs =styled.div`
-width:40%;
-height:auto;
-`
 
-const BuyModal =styled.div`
-width: 382px;
-height: 315px;
-background:white;
-border-radius: 10px;
-padding:30px;
-margin-top:70px
-`
-const EventName =styled.div`
-
-width: 567px;
-height: 152px;
-margin-top:128px
-`
-
-const Caption = styled.div`
-width: 525px;
-height: 99px;
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 33px;
-padding-top: 32px;
-`
-
-const ModalCalender =styled.div`
-margin-bottom:30px
-`
-const DetailedEvent =styled.div`
-width:85%;
-height: auto;
-margin-top: 100px;
-display: flex;
-justify-content: space-between;
-`
-const EventDate = styled.div`
-width: 707px;
-height: 76px;
-font-weight: 600;
-font-size: 20px;
-line-height: 37px;
-color: #252D42;
-display: flex;
-justify-content: space-between
-`

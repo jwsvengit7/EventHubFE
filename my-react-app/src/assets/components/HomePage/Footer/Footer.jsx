@@ -5,7 +5,11 @@ import youtube from '../image/svg/youtube.svg'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import { DivFooter, DivInsideRight, FooterDiv, LetfDivEvent, RightDivEvent } from '../../Styled/Styled'
+import { DivFooter, 
+    DivInsideRight, 
+    FooterDiv, 
+    LetfDivEvent, 
+    RightDivEvent } from '../../Styled/Styled'
 export default function Footer(){
     return (
         <>

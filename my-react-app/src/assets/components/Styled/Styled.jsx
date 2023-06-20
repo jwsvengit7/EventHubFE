@@ -185,8 +185,7 @@ export const EvnetsBody =styled.div`
 width:85%;
 height:auto;
 `
-export const RoleEventFilter = styled.div
-`
+export const RoleEventFilter = styled.div`
 width:100%;
 display:flex;
 justify-content:space-between;
@@ -434,8 +433,7 @@ select{
 
 `
 
-export const ButtonForm =styled.button
-`
+export const ButtonForm =styled.button`
 width: 100%;
 height: 48px;
 outline:none;
@@ -454,15 +452,14 @@ font-size:17px;
 }
 `
 
-export const ButtonFormWhite =styled.button
-`
+export const ButtonFormWhite =styled.button`
 width: 100%;
 height: 48px;
 outline:none;
 border:0px;
 margin-bottom:30px;
 
-background: pink 
+background: pink; 
 
 border-radius: 4px;
 transition-duration:0.5s;
@@ -542,14 +539,14 @@ export const ModalCalender =styled.div`
 margin-bottom:30px
 `
 export const DetailedEvent =styled.div`
-width:85%;
+width:100%;
 height: auto;
 margin-top: 100px;
 display: flex;
 justify-content: space-between;
 `
 export const EventDate = styled.div`
-width: 707px;
+width: 100%;
 height: 76px;
 font-weight: 600;
 font-size: 20px;
@@ -653,4 +650,85 @@ display: flex;
 align-items: center;
 font-size:13px
 
+`
+
+export const Description = styled.div`
+width: 567px;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+export const DetailedDescription = styled.div`
+margin-top: 24px;
+width: 100%;
+height: auto;
+font-weight: 400;
+font-size: 16px;
+line-height: 27px;
+color: #252D42;
+`
+export const EventDesc = styled.div`
+width: 100%;
+height: auto;
+`
+export const Divs2 =styled.div`
+width:60%;
+height:auto;
+`
+export const EventLocation =styled.div`
+width: 100%;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+
+export const StartDate = styled.div`
+width: 98px;
+height: 78px;
+`
+export const StartDateName = styled.div`
+width:98px;
+font-weight: 600;
+font-size: 20px;
+line-height: 37px;
+color: #252D42;
+`
+export const StartDateValue = styled.div`
+width:98px;
+font-weight: 200;
+font-size: 16px;
+line-height: 37px;
+color: #252D42;
+`
+export const MapOfEvents =styled.div`
+margin-top: 24px;
+width: 100%;
+height: 385px;
+div{
+ position:relative   
+}
+`
+export const ShareSocial =styled.div`
+margin-top: 85px;
+width: 100%;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+export const OtherEvents =styled.div`
+width: 100%;
+height: auto;
+`
+export const SecondDiv = styled.div`
+width: 37%;
+height: auto;
+`
+export const EventMap =styled.div`
+width: 100%;
 `

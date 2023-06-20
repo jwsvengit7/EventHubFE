@@ -1,8 +1,12 @@
 import './css/EventDetails.css'
-import styled from 'styled-components'
 
-
-import { BannerDiv,EventDate, UpcomingEvents,EvnetsBody,ButtonForm,ButtonFormWhite, GobackDiv, Divs, EventName, Caption, BuyModal, ModalCalender, DetailedEvent } from '../Styled/Styled'
+import MapOfEvent from "./MapOfEvent.jsx";
+import MoreEvents from "./MoreEvents.jsx";
+import { BannerDiv,EventDate, UpcomingEvents,EvnetsBody,ButtonForm,ButtonFormWhite,
+    GobackDiv, Divs, EventName, Caption, BuyModal, ModalCalender, DetailedEvent, Divs2,
+    EventDesc, Description, DetailedDescription, StartDate, StartDateName, StartDateValue,
+    EventMap, EventLocation, OtherEvents, ShareSocial, MapOfEvents, SecondDiv } from '../Styled/Styled'
+import {Link} from "react-router-dom";
 
 
   
@@ -67,7 +71,7 @@ export default function EventDetail(){
                         </EventDesc>
                         <EventDesc>
                             <p className='eventdate'>How to contact the organizer</p>
-                            <p className='contactInfo'>Pleace visit <Link to="https://samplewebsite.com/contact-us">https://samplewebsite.com/contact-us</Link> or refer to the FAQ section for all questions.</p>
+                            <p className='contactInfo'>Please visit <Link to="https://samplewebsite.com/contact-us">https://samplewebsite.com/contact-us</Link> or refer to the FAQ section for all questions.</p>
                         </EventDesc>
                     </Divs2>
                     <SecondDiv>

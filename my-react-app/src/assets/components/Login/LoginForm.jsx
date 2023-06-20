@@ -9,7 +9,6 @@ import { BackgroundImage, ButtonForm, CenterDiv, Container, Fieldset, Form, Form
 
 const PORT = 8999;
 
-
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -39,34 +38,46 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         setLoading(false);
 
         const result = response.data;
+        const Token =response.data.data.accessToken;
         const message = result.data.message;
-        console.log(result);
-    
-
+      
+        console.log(result)
+        localStorage.setItem("TOKEN",Token)
+         swal("ALERT",message,"success")
+         request_meethod("/app/dashboard")
         
       } catch (err) {
         setLoading(false);
         const message = err.response.data.data.message;
-        console.log(err.response.data.data)
-        if(message=="Account Invalid"){
-          var x=0;
-          setInterval(() => {
-            x++;
-            if(x==5){
-              localStorage.setItem("email",formData.email)
-              window.location.replace("/verify-user")
-            }
-            
-          }, 1000);
-     
+
+        if(message=="Account is Disabled"){
+          swal('ALERT',message, 'error');
+          localStorage.setItem("email",formData.email)
+          request_meethod(formData.email,"email","/verify-user")
+        
+        }else if(message=="User Not Found"){
+          swal('ALERT',message, 'error');
+
+        }else{
+          swal('ALERT',"Try again", 'error');
         }
-      
-        
-        
-        swal('ALERT',message, 'error');
+    
       }
     }
   };
+
+  const request_meethod =(url)=>{
+      var x=0;
+      setInterval(() => {
+        x++;
+        if(x==3){
+
+        
+          window.location.replace(url)
+        }
+        
+      }, 1000);
+  }
 
   return (
     <Container>
@@ -108,7 +119,6 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             </ButtonForm>
             <CenterDiv>
               <p>Don't have an Account? <Link to="/signup">Register</Link></p>
-            
             </CenterDiv>
             <center><p>or</p></center>
             <CenterDiv>

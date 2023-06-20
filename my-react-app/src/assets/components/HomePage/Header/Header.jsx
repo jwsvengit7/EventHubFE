@@ -1,15 +1,19 @@
+import Profile from '../../Dashboard/Profile/Profile';
 import { Account, Button, HeaderStyle, Headers, LogoDiv } from '../../Styled/Styled';
 import '../css/HomePage.css'
 import { Link } from 'react-router-dom';
 
 export default function Header(){
+    const TOKEN = localStorage.getItem("TOKEN");
     return (
         <>
         <HeaderStyle>
             <Headers>
             <LogoDiv><h1 className='eventLogo'>Event</h1></LogoDiv>
             <Account>
-                <Link className='link-login' to="/login">Login</Link>
+                
+                {(TOKEN==null) ? <Link className='link-login' to="/login">Login</Link> :<Profile /> }
+                
                 <Button>Create Event</Button>
             </Account>
             </Headers>

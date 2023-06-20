@@ -8,6 +8,12 @@ import Token from './assets/components/Login/Token/Token'
 import Dashboard from './assets/components/Dashboard/Dashboard'
 import ForgetPassword from './assets/components/Login/Forget-Password/ForgetPassword'
 import AuthenticatePassword from './assets/components/Login/Forget-Password/AuthenticatePassword'
+import EventDetails from './assets/components/EventDetails/EventDetails'
+import Chekout from './assets/components/Chekout/Chekout'
+import Information from './assets/components/Dashboard/Account/Information'
+import PaymentSetup from './assets/components/Dashboard/Account/PaymentSetup'
+import TicketModel from './assets/components/TicketModel/TicketModel'
+
 
 function App() {
 
@@ -24,7 +30,12 @@ function App() {
     <Route path="/token/:token" element={<Token />} />
     <Route path="/app/dashboard" element={<Dashboard />} />
     <Route path="/tokens" element={<AuthenticatePassword />} />
-    <Route path="/checkout" element={<Chekout />} />
+    <Route path="/chekout" element={<Chekout />} />
+
+    <Route path="/event-details" element={<EventDetails />} />
+    <Route path="/app/setuppayment" element={<PaymentSetup />} />
+    <Route path="/app/account" element={<Information />} />
+    <Route path="/ticket" element={<TicketModel />} />
 
     </Routes>
     </Router>

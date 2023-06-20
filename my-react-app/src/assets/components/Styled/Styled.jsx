@@ -54,7 +54,7 @@ cursor:pointer
 
 // EVENT
 export const EventDatas =styled.div`
-width:32%;
+width:30%;
 height:auto;
 background:white;
 margin-bottom:30px;
@@ -66,9 +66,9 @@ margin-bottom:30px;
 
 export const ContentEvent= styled.div`
 width:100%;
-height:auto;
+height:144px;
 display:flex;
-justify-content:space-around;
+justify-content:space-between;
 
 `
 
@@ -115,28 +115,28 @@ export const DivRoleContent = styled.div`
 width:100%;
 height:auto;
 display:flex;
+justify-content: center;
 @media(max-width:600px){
 
 flex-direction:column;
 }
 `
 export const Label = styled.label`
-height:50px;
+height:45px;
 color:white;
 font-family:sans-serif;
-margin-left:40px;
 color:#ccc;
 input {
-    width:200px;
-    height:20px;
+    width: 286px;
+    height:45px;
     border-radius:10px;
     margin-top:10px;
+    padding-left:16px;
     border:0px;
-    padding:16px;
 
 }
 select{
-    height:50px;
+    height:45px;
     margin-top:10px;
     width:250px;
     border:0px;
@@ -160,7 +160,7 @@ width: 84px;
 height: 71px;
 background: #FF5722;
 border-radius: 10px;
-margin-left:30px;
+margin-top: 7px;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -193,7 +193,7 @@ justify-content:space-between;
 
 @media(max-width:600px){
     h1{
-        font-size:20px
+        font-size: 20px;
     }
 }
 `
@@ -219,6 +219,7 @@ cursor:pointer;
 display:flex;
 justify-content:center;
 align-items:center;
+margin-top: 60px;
 
 span{
     color:rgba(37,45,66,0.85);
@@ -276,8 +277,12 @@ width:25%;
 height:300px;
 
 p{
-    color:white;
+    color: white;
     font-family:sans-serif;
+    font-size:16px;
+    line-height: 26px;
+    font-weight: 100;
+
 }
 
 @media (max-width:700px){
@@ -290,6 +295,7 @@ export const RightDivEvent =styled.div`
 width:60%;
 height:300px;
 display:flex;
+margin-left: 20%;
 @media (max-width:700px){
     height:auto;
     width:70%;
@@ -298,10 +304,11 @@ display:flex;
 `
 
 export const DivFooter =styled.div`
-width:40%;
+width:45%;
 height:40px;
 align-items:center;
 display:flex;
+margin-left: 47%;
 justify-content:space-between;
 
 @media (max-width:700px){
@@ -312,16 +319,20 @@ justify-content:space-between;
 export const DivInsideRight =styled.div`
 width:25%;
 height:auto;
-
+margin-top: 2%;
 p{
-    color:white;
+    color:#D9DBE1;
     font-family:sans-serif;
+    font-weight: 100;
+    font-size:16px;
+    line-height: 26px;
 }
 label{
     width:250px;
     height:40px;
     display:flex;
     background:#fff;
+    color: white;
     opacity:0.2;
     border-radius:8px;
     align-items:center;
@@ -331,6 +342,7 @@ label input{
     width:80%;
     height:90%;
     border-radius:8px;
+    color: white;
     border:0px;
     outline:none;
 }
@@ -370,13 +382,12 @@ display:flex;
 
 export const FormDiv =styled.div`
 width:40%;
-height:auto;
-display:flex;
-justify-content:center;
-margin-bottom:30px;
+height: auto;
+display: flex;
+justify-content: center;
+margin-bottom: 30px;
 @media(max-width:600px){
-  width:100%;
-  
+    width:100%;
 }
 `
 export const Form =styled.form`
@@ -411,6 +422,14 @@ input{
   font-size:15px;
   background: #F8F9FA;
 
+}
+select{
+  width:100%;
+  height:100%;
+  border:0px;
+  outline:none;
+  font-size:15px;
+  background: #F8F9FA; 
 }
 
 `
@@ -519,6 +538,27 @@ export const Text = styled.p`
   text-align: center;
   border-radius:10px
 `;
+export const ModalCalender =styled.div`
+margin-bottom:30px
+`
+export const DetailedEvent =styled.div`
+width:85%;
+height: auto;
+margin-top: 100px;
+display: flex;
+justify-content: space-between;
+`
+export const EventDate = styled.div`
+width: 707px;
+height: 76px;
+font-weight: 600;
+font-size: 20px;
+line-height: 37px;
+color: #252D42;
+display: flex;
+justify-content: space-between
+`
+
 
 
 export const GobackDiv = styled.div`
@@ -557,26 +597,8 @@ line-height: 33px;
 padding-top: 32px;
 `
 
-export const ModalCalender =styled.div`
-margin-bottom:30px
-`
-export const DetailedEvent =styled.div`
-width:85%;
-height: auto;
-margin-top: 100px;
-display: flex;
-justify-content: space-between;
-`
-export const EventDate = styled.div`
-width: 707px;
-height: 76px;
-font-weight: 600;
-font-size: 20px;
-line-height: 37px;
-color: #252D42;
-display: flex;
-justify-content: space-between
-`
+
+
 
 export const Setup=styled.div`
 
@@ -632,4 +654,3 @@ align-items: center;
 font-size:13px
 
 `
-

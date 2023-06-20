@@ -18,6 +18,7 @@ import TicketModel from './assets/components/TicketModel/TicketModel'
 import TicketSummary from './assets/components/TicketSummary/TicketSummary'
 import TicketPage from './assets/components/TicketPage/TicketPage'
 import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
+import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
 
 
 
@@ -51,6 +52,7 @@ function App() {
     <Route path="/app/account" element={<Information />} />
     <Route path="/ticket-modal" element={<TicketModel />} />
     <Route path="/event-details" element={<EventDetails />} />
+    <Route path="/user-profile-modal" element={<UserProfileModal />} />
 
     </Routes>
     </Router>

@@ -43,13 +43,15 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       
         console.log(result)
         localStorage.setItem("TOKEN",Token)
-        
          swal("ALERT",message,"success")
          request_meethod("/app/dashboard")
+
+
         
       } catch (err) {
         setLoading(false);
         const message = err.response.data.data.message;
+
 
         if(message=="Account is Disabled"){
           swal('ALERT',message, 'error');
@@ -63,6 +65,7 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
           swal('ALERT',"Try again", 'error');
         }
     
+
       }
     }
   };

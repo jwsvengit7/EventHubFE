@@ -443,6 +443,7 @@ border:0px;
 margin-bottom:30px;
 
 background:#FF5722; 
+
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
@@ -462,6 +463,7 @@ border:0px;
 margin-bottom:30px;
 
 background: pink 
+
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
@@ -556,6 +558,47 @@ color: #252D42;
 display: flex;
 justify-content: space-between
 `
+
+
+
+export const GobackDiv = styled.div`
+width:85%;
+height:400px;
+display:flex;
+justify-content:space-between
+`
+export const Divs =styled.div`
+width:40%;
+height:auto;
+`
+
+export const BuyModal =styled.div`
+width: 382px;
+height: 315px;
+background:white;
+border-radius: 10px;
+padding:30px;
+margin-top:70px
+`
+export const EventName =styled.div`
+
+width: 567px;
+height: 152px;
+margin-top:128px
+`
+
+export const Caption = styled.div`
+width: 525px;
+height: 99px;
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 33px;
+padding-top: 32px;
+`
+
+
+
 
 export const Setup=styled.div`
 

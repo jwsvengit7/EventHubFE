@@ -16,7 +16,6 @@ const Token = () => {
   const [mainMessage, setMainMessage] = useState('');
   const [loading,setHoled] = useState(false)
 
-  let val="";
 
 try{
   useEffect(() => {
@@ -38,9 +37,6 @@ try{
             setMainMessage("USER ACTIVATED");
             return;
           }
-       
-            
-   
       })
       .catch(error => {
         setHoled(true)

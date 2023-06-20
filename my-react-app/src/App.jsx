@@ -15,6 +15,9 @@ import Chekout from './assets/components/Chekout/Chekout'
 import Information from './assets/components/Dashboard/Account/Information'
 import PaymentSetup from './assets/components/Dashboard/Account/PaymentSetup'
 import TicketModel from './assets/components/TicketModel/TicketModel'
+import TicketSummary from './assets/components/TicketSummary/TicketSummary'
+import TicketPage from './assets/components/TicketPage/TicketPage'
+import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 
 
 
@@ -35,14 +38,19 @@ function App() {
     <Route path="/token/:token" element={<Token />} />
     <Route path="/app/dashboard" element={<Dashboard />} />
     <Route path="/tokens" element={<AuthenticatePassword />} />
+
+    <Route path='/ticket' element={<TicketPage />}/>
+    <Route path='/ticket-summary' element={<TicketSummary />}/>
+    <Route path='/fund-wallet' element={<FundWalletPage />}/>
+    
+
     <Route path="/chekout" element={<Chekout />} />
 
     <Route path="/event-details" element={<EventDetails />} />
     <Route path="/app/setuppayment" element={<PaymentSetup />} />
     <Route path="/app/account" element={<Information />} />
-    <Route path="/ticket" element={<TicketModel />} />
+    <Route path="/ticket-modal" element={<TicketModel />} />
     <Route path="/event-details" element={<EventDetails />} />
-
 
     </Routes>
     </Router>

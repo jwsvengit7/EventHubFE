@@ -2,7 +2,12 @@ import styled from "styled-components"
 import profile from '../../HomePage/image/event_1.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 const Profile =()=>{
+    const [check,setCheck] =useState(false)
+    const handle =()=>{
+        setCheck(true)
+    }
     return (
         <>
         <ProfileRow>
@@ -11,7 +16,8 @@ const Profile =()=>{
                 <Img src={profile} alt="logo"></Img>
               
             </Round>
-            <span>Temple Jackson <FontAwesomeIcon icon={faChevronDown} /></span>
+            <span onClick={handle}>Temple Jackson <FontAwesomeIcon icon={faChevronDown} /></span>
+            {(check) ? "1" : "" }
 
         </ProfileRow>
         </>

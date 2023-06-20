@@ -1,6 +1,8 @@
 import './css/EventDetails.css'
 import styled from 'styled-components'
+
 import { BannerDiv,EventDate, UpcomingEvents,EvnetsBody,ButtonForm,ButtonFormWhite, GobackDiv, Divs, EventName, Caption, BuyModal, ModalCalender, DetailedEvent } from '../Styled/Styled'
+
 
 
 export default function EventDetail(){
@@ -58,4 +60,5 @@ export default function EventDetail(){
         </div>
     )
 }
+
 

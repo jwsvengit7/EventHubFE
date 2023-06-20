@@ -424,6 +424,7 @@ border:0px;
 margin-bottom:30px;
 
 background:#FF5722; 
+
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
@@ -443,6 +444,7 @@ border:0px;
 margin-bottom:30px;
 
 background: pink 
+
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
@@ -517,6 +519,7 @@ export const Text = styled.p`
   text-align: center;
   border-radius:10px
 `;
+
 
 export const GobackDiv = styled.div`
 width:85%;
@@ -629,3 +632,4 @@ align-items: center;
 font-size:13px
 
 `
+

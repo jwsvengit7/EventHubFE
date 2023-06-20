@@ -15,6 +15,7 @@ import PaymentSetup from './assets/components/Dashboard/Account/PaymentSetup'
 import TicketModel from './assets/components/TicketModel/TicketModel'
 
 
+
 function App() {
 
 
@@ -36,6 +37,9 @@ function App() {
     <Route path="/app/setuppayment" element={<PaymentSetup />} />
     <Route path="/app/account" element={<Information />} />
     <Route path="/ticket" element={<TicketModel />} />
+    <Route path="/event-details" element={<EventDetails />} />
+
+
 
     </Routes>
     </Router>

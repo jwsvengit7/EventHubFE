@@ -20,6 +20,7 @@ import TicketPage from './assets/components/TicketPage/TicketPage'
 import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
 import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.jsx";
+import AllEventCreated from "./assets/components/AllEventsCreated/AllEventCreated.jsx";
 
 
 
@@ -54,6 +55,7 @@ function App() {
     <Route path="/ticket-modal" element={<TicketModel />} />
     <Route path="/app/event-details" element={<EventDetails />} />
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
+    <Route path="/user-event-created" element={<AllEventCreated />} />
 
     </Routes>
     </Router>

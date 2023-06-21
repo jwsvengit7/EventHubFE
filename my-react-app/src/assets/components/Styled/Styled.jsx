@@ -731,3 +731,163 @@ height: auto;
 export const EventMap =styled.div`
 width: 100%;
 `
+export const SetUp2 =styled.div`
+  width: 85%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+`
+export const SetUp3 =styled.div`
+  width: 83%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 1%
+`
+export const ConfirmTitle =styled.div`
+  width: 60%;
+  height: auto;
+  margin-top: 0;
+`
+export const EditDetails =styled.div`
+  margin-top:10px;
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-content: center;
+`
+export const EditBox =styled.div`
+  margin-top: 30px;
+  align-items: center;
+  width: 111px;
+  height: 47px;
+  display: flex;
+  justify-content: center;
+  background: #F2F4F7;
+  border: 1px solid #101828;
+  border-radius: 6px;
+`
+export const AllEvent =styled.div`
+  margin-top: 30px;
+  margin-left: 24px;
+`
+export const Line = styled.div`
+  width: 85%;
+  margin-top: 25px; 
+  border: 1px solid #C4C4C4;
+`
+export const OtherConfirmation =styled.div`
+  width: 85%;
+  height: auto;
+  margin-bottom: 50px;
+`
+export const TheDetails =styled.div`
+  margin-bottom: 60px;
+`
+export const TheDetails2 =styled.div`
+  margin-bottom: 26px;
+  p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0.15px;
+    color: #667085;
+  }
+  span{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.15px;
+    color: #252D42;
+  }
+`
+export const Filter = styled.div`
+  width: 35%;
+  height: auto;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+`
+export const FilterContent =styled.div`
+  margin-right: 10px;
+  width: 35%;
+  height: 25%;
+  border: 1px solid #555A68;
+  border-radius: 5px;
+`
+export const HorLine =styled.div`
+  background: #EAECF0;
+  transform: rotate(-90deg);
+  width: 22px;
+  height: 2px;
+`
+export const TheContent =styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 7%;
+  padding-right: 7%;
+  height: 100%;
+`
+export const CreatedEvents = styled.div`
+  
+  width: 320px;
+  height: 230px;
+  background: green;
+  margin-right: 2%;
+  img{
+    width:100%;
+    height: 100%;
+  }
+`
+export const FirstDetails =styled.div`
+  width: 23%;
+  height: auto;
+`
+export const SecondDetails =styled.div`
+  width: 30%;
+  height: auto;
+`
+export const ThirdDetails =styled.div`
+  width: 12%;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  flex-direction:column;
+`
+export const Active =styled.div`
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 4px;
+  width: 65px;
+  height: 30px;
+  background: #F6FEF9;
+  border: 1px solid #A6F4C5;
+  border-radius: 16px;
+  p{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.15px;
+    color: #34A853;
+  }
+`
+export const TicketSold =styled.div`
+  margin-bottom: 20px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+  text-decoration-line: underline;
+  color: #FF5722;
+
+`

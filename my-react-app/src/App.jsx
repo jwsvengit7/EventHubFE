@@ -19,10 +19,10 @@ import TicketSummary from './assets/components/TicketSummary/TicketSummary'
 import TicketPage from './assets/components/TicketPage/TicketPage'
 import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
+import SearchBar from './assets/components/Dashboard/CreateEvent/EventSearch/SearchBar'
 import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.jsx";
 import CreateEvent from "./assets/components/Dashboard/CreateEvent/CreateEvent.jsx";
 import AllEventCreated from "./assets/components/AllEventsCreated/AllEventCreated.jsx";
-
 
 
 
@@ -57,8 +57,8 @@ function App() {
     <Route path="/ticket-modal" element={<TicketModel />} />
     <Route path="/app/event-details" element={<EventDetails />} />
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
+    <Route path="/search-bar" element={<SearchBar />} />
     <Route path="/user-event-created" element={<AllEventCreated />} />
-
     </Routes>
     </Router>
      

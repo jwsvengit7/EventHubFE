@@ -45,11 +45,15 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         localStorage.setItem("TOKEN",Token)
         
          swal("ALERT",message,"success")
+
          request_meethod("/")
+
+
         
       } catch (err) {
         setLoading(false);
         const message = err.response.data.data.message;
+
 
         if(message=="Account is Disabled"){
           swal('ALERT',message, 'error');
@@ -63,6 +67,7 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
           swal('ALERT',"Try again", 'error');
         }
     
+
       }
     }
   };
@@ -146,12 +151,3 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
 }
 
 export default LoginForm;
-
-
-
-
-
-
-
-
-

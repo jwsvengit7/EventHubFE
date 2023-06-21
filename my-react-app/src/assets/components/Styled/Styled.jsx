@@ -17,7 +17,7 @@ width:85%;
 height:auto;
 display:flex;
 justify-content:space-between;
-align-items:center;
+align-items:center; = 
 `
 export const LogoDiv = styled.div`
 width:25%;
@@ -54,7 +54,7 @@ cursor:pointer
 
 // EVENT
 export const EventDatas =styled.div`
-width:32%;
+width:30%;
 height:auto;
 background:white;
 margin-bottom:30px;
@@ -66,9 +66,9 @@ margin-bottom:30px;
 
 export const ContentEvent= styled.div`
 width:100%;
-height:auto;
+height:144px;
 display:flex;
-justify-content:space-around;
+justify-content:space-between;
 
 `
 
@@ -115,28 +115,28 @@ export const DivRoleContent = styled.div`
 width:100%;
 height:auto;
 display:flex;
+justify-content: center;
 @media(max-width:600px){
 
 flex-direction:column;
 }
 `
 export const Label = styled.label`
-height:50px;
+height:45px;
 color:white;
 font-family:sans-serif;
-margin-left:40px;
 color:#ccc;
 input {
-    width:200px;
-    height:20px;
+    width: 286px;
+    height:45px;
     border-radius:10px;
     margin-top:10px;
+    padding-left:16px;
     border:0px;
-    padding:16px;
 
 }
 select{
-    height:50px;
+    height:45px;
     margin-top:10px;
     width:250px;
     border:0px;
@@ -160,7 +160,7 @@ width: 84px;
 height: 71px;
 background: #FF5722;
 border-radius: 10px;
-margin-left:30px;
+margin-top: 7px;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -185,15 +185,14 @@ export const EvnetsBody =styled.div`
 width:85%;
 height:auto;
 `
-export const RoleEventFilter = styled.div
-`
+export const RoleEventFilter = styled.div`
 width:100%;
 display:flex;
 justify-content:space-between;
 
 @media(max-width:600px){
     h1{
-        font-size:20px
+        font-size: 20px;
     }
 }
 `
@@ -219,6 +218,7 @@ cursor:pointer;
 display:flex;
 justify-content:center;
 align-items:center;
+margin-top: 60px;
 
 span{
     color:rgba(37,45,66,0.85);
@@ -276,8 +276,12 @@ width:25%;
 height:300px;
 
 p{
-    color:white;
+    color: white;
     font-family:sans-serif;
+    font-size:16px;
+    line-height: 26px;
+    font-weight: 100;
+
 }
 
 @media (max-width:700px){
@@ -290,6 +294,7 @@ export const RightDivEvent =styled.div`
 width:60%;
 height:300px;
 display:flex;
+margin-left: 20%;
 @media (max-width:700px){
     height:auto;
     width:70%;
@@ -298,10 +303,11 @@ display:flex;
 `
 
 export const DivFooter =styled.div`
-width:40%;
+width:45%;
 height:40px;
 align-items:center;
 display:flex;
+margin-left: 47%;
 justify-content:space-between;
 
 @media (max-width:700px){
@@ -312,16 +318,20 @@ justify-content:space-between;
 export const DivInsideRight =styled.div`
 width:25%;
 height:auto;
-
+margin-top: 2%;
 p{
-    color:white;
+    color:#D9DBE1;
     font-family:sans-serif;
+    font-weight: 100;
+    font-size:16px;
+    line-height: 26px;
 }
 label{
     width:250px;
     height:40px;
     display:flex;
     background:#fff;
+    color: white;
     opacity:0.2;
     border-radius:8px;
     align-items:center;
@@ -331,6 +341,7 @@ label input{
     width:80%;
     height:90%;
     border-radius:8px;
+    color: white;
     border:0px;
     outline:none;
 }
@@ -370,13 +381,12 @@ display:flex;
 
 export const FormDiv =styled.div`
 width:40%;
-height:auto;
-display:flex;
-justify-content:center;
-margin-bottom:30px;
+height: auto;
+display: flex;
+justify-content: center;
+margin-bottom: 30px;
 @media(max-width:600px){
-  width:100%;
-  
+    width:100%;
 }
 `
 export const Form =styled.form`
@@ -412,11 +422,18 @@ input{
   background: #F8F9FA;
 
 }
+select{
+  width:100%;
+  height:100%;
+  border:0px;
+  outline:none;
+  font-size:15px;
+  background: #F8F9FA; 
+}
 
 `
 
-export const ButtonForm =styled.button
-`
+export const ButtonForm =styled.button`
 width: 100%;
 height: 48px;
 outline:none;
@@ -424,6 +441,7 @@ border:0px;
 margin-bottom:30px;
 
 background:#FF5722; 
+
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
@@ -434,15 +452,15 @@ font-size:17px;
 }
 `
 
-export const ButtonFormWhite =styled.button
-`
+export const ButtonFormWhite =styled.button`
 width: 100%;
 height: 48px;
 outline:none;
 border:0px;
 margin-bottom:30px;
 
-background: pink 
+background: pink; 
+
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
@@ -517,6 +535,28 @@ export const Text = styled.p`
   text-align: center;
   border-radius:10px
 `;
+export const ModalCalender =styled.div`
+margin-bottom:30px
+`
+export const DetailedEvent =styled.div`
+width:100%;
+height: auto;
+margin-top: 100px;
+display: flex;
+justify-content: space-between;
+`
+export const EventDate = styled.div`
+width: 100%;
+height: 76px;
+font-weight: 600;
+font-size: 20px;
+line-height: 37px;
+color: #252D42;
+display: flex;
+justify-content: space-between
+`
+
+
 
 export const GobackDiv = styled.div`
 width:85%;
@@ -554,26 +594,8 @@ line-height: 33px;
 padding-top: 32px;
 `
 
-export const ModalCalender =styled.div`
-margin-bottom:30px
-`
-export const DetailedEvent =styled.div`
-width:85%;
-height: auto;
-margin-top: 100px;
-display: flex;
-justify-content: space-between;
-`
-export const EventDate = styled.div`
-width: 707px;
-height: 76px;
-font-weight: 600;
-font-size: 20px;
-line-height: 37px;
-color: #252D42;
-display: flex;
-justify-content: space-between
-`
+
+
 
 export const Setup=styled.div`
 
@@ -629,3 +651,233 @@ align-items: center;
 font-size:13px
 
 `
+
+export const Description = styled.div`
+width: 567px;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+export const DetailedDescription = styled.div`
+margin-top: 24px;
+width: 100%;
+height: auto;
+font-weight: 400;
+font-size: 16px;
+line-height: 27px;
+color: #252D42;
+`
+export const EventDesc = styled.div`
+width: 100%;
+height: auto;
+`
+export const Divs2 =styled.div`
+width:60%;
+height:auto;
+`
+export const EventLocation =styled.div`
+width: 100%;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+
+export const StartDate = styled.div`
+width: 98px;
+height: 78px;
+`
+export const StartDateName = styled.div`
+width:98px;
+font-weight: 600;
+font-size: 20px;
+line-height: 37px;
+color: #252D42;
+`
+export const StartDateValue = styled.div`
+width:98px;
+font-weight: 200;
+font-size: 16px;
+line-height: 37px;
+color: #252D42;
+`
+export const MapOfEvents =styled.div`
+margin-top: 24px;
+width: 100%;
+height: 385px;
+div{
+ position:relative   
+}
+`
+export const ShareSocial =styled.div`
+margin-top: 85px;
+width: 100%;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+export const OtherEvents =styled.div`
+width: 100%;
+height: auto;
+`
+export const SecondDiv = styled.div`
+width: 37%;
+height: auto;
+`
+export const EventMap =styled.div`
+width: 100%;
+`
+
+
+export const ContentText =styled.div`
+margin-top:70px;
+ display:flex;
+justify-content:space-between;
+align-item:center;
+
+button{
+   color:black;
+   width:100px;
+   height:30px;
+   margin:40px
+}
+
+
+`
+
+export const ContentBox = styled.div`
+background: rgba(0, 50, 47, 0.05);
+display:flex;
+justify-content:space-between;
+width:100%;
+height:auto;
+padding:50px;
+
+border-bottom:1px solid #C4C4C4;
+button{
+ margin-left:400px;
+ text-align:center;
+ background: rgba(255, 87, 34, 1);
+ border:none;
+
+
+}
+
+` 
+
+
+export const spanDiv = styled.div`
+color:blue;
+display:flex
+align-items:center;
+`
+
+export const Content = styled.div`
+width:95%;
+height:auto;
+margin-bottom:100px;
+padding-top:40px;
+
+` 
+export const Box = styled.div`
+display:flex;
+justify-content:space-evenly;
+align-items:center;
+text-align:center;
+width:200px;
+height:60px;
+margin:5px;
+background:#FFFFFF;
+`
+
+export const T = styled.div`
+margin-top:100px;
+font-weight: 700;
+font-size: 24px;
+line-height: 33px;
+color: #000000;
+`
+
+export const Fieldsets = styled.fieldset`
+margin-top:20px;
+height:50px;
+width:40%;
+border: 1px solid rgba(37, 45, 66, 0.29);
+border-radius: 4px;
+box-sizing:box;
+
+input{
+width:100%;
+height:20px;
+border:0px;
+outline:none;
+font-size:15px;
+
+
+}
+
+`
+
+
+export const Forms =styled.form`
+
+
+display:flex;
+backgroud:blue;
+justify-content:space-between;
+align-items:center;
+
+
+
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+`
+export const ContentBackground =styled.div`
+width:100%;
+height:auto;
+display:flex;
+justify-content:center`
+
+export const Items =styled.div`
+width:100%;
+height:70px;
+margin-bottom:30px;
+margin-left:10px;
+
+
+`
+
+
+export const ContainerTicket =styled.div`
+width:100%;
+`
+
+
+
+export const DivTicket=styled.div`
+width:83%;
+
+`
+export const TextTicket =styled.div`
+color:white;
+width:25%;
+height:100px;
+display:flex;
+align-items:center;
+font-size:18px;
+margin-top:50px;
+font-weight:600;
+text-decoration:none;
+  `
+ export const Span = styled.div`
+  color:white;
+  font-size:56px;
+  font weight:700px;
+  margin-top:130px;
+  `
+ 

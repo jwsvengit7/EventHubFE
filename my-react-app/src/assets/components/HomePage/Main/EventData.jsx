@@ -6,7 +6,7 @@ function EventData(props){
                     <ContentEvent>
                         <div className={props.date}>
                         <h2>{props.month} </h2> 
-                        <span>{props.date}</span> 
+                        <span>{props.day}</span> 
                         </div>
                         <div className={props.eventName}>
                         <h3>{props.name} </h3>

@@ -14,6 +14,9 @@ import { UpcomingEvents,
 import { useState,useEffect } from "react";
 const TOKEN = localStorage.getItem("TOKEN");
 const  Information   = ()  =>{
+  if(TOKEN==null){
+    window.location.replace("/login")
+  }
   const [accounts,setAccounts] =useState([])
   
   axios.
@@ -45,9 +48,11 @@ const  Information   = ()  =>{
                 <h1></h1>
                    
                         <FormAccount>
-                          {accounts.map((val,index)=>{
+                          {
+                           (accounts.length > 0) ? accounts.map((val, index) => {
+                            if (val) { 
                             return(
-<>
+                              <>
                               <Details>
                               <DiviNFO>
                                 <p>Account Name</p>
@@ -77,7 +82,10 @@ const  Information   = ()  =>{
                               </Details>
                               </>
                             )
-                          })}
+                            }
+                          }) :""
+                        
+}
 
                         </FormAccount>
                             

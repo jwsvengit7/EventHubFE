@@ -18,6 +18,7 @@ const FormRegister = () => {
     phone: ""
   });
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -26,9 +27,22 @@ const FormRegister = () => {
       [name]: value
     }));
   };
-  const handleSubmit = async (event) => {
-     event.preventDefault();
+  const handleUrlChange = (event) => {
+    const selectedOption = event.target.value;
+    let url;
+  
+    if (selectedOption === 'eventGoer') {
+      setUrl(`http://localhost:${PORT}/api/v1/auth/register-event-goer`);
+    } else if (selectedOption === 'eventCreator') {
+      setUrl(`http://localhost:${PORT}/api/v1/auth/register-event-creator`);
+    }
+  
 
+  };
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
     if (formData.firstName.length < 3) {
       swal('ALERT', 'Name is required', 'error');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
@@ -40,31 +54,27 @@ const FormRegister = () => {
     } else {
       try {
         setLoading(true);
-        const url = `http://localhost:${PORT}/api/v1/auth/register-event-goer`;
         const response = await axios.post(url, formData);
         setLoading(false);
         const result = response.data;
-     
+  
         let message = result.data.message;
-        console.log(message)
-
-        if (message === "Registration Successful") {
+        console.log(message);
+  
+        if (message === 'Registration Successful') {
           swal('ALERT!', 'Kindly Check your inbox to verify your Email', 'success');
-        } 
+        }
       } catch (err) {
         setLoading(false);
-        if(err.response.data.data.message!=undefined){
+        if (err.response && err.response.data && err.response.data.data && err.response.data.data.message) {
           console.log(err.response.data.data.message);
           swal('ALERT', err.response.data.data.message, 'error');
-        }else{
-          swal('ALERT', "Try Again Later", 'error');
+        } else {
+          swal('ALERT', 'Try Again Later', 'error');
         }
-        
-    
       }
     }
-  };
-
+  };  
   return (
     <Container>
       {(loading) ?
@@ -76,8 +86,20 @@ const FormRegister = () => {
          <FormDiv>
           <Form onSubmit={handleSubmit}>
             <h2>Create an account</h2>
-            <p style={{margin:"0px",marginBottom:"50px"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+            <p style={{margin:"0px",marginBottom:"50px"}}>Event Goer Registration</p>
            
+
+            <Fieldset>
+              <legend>Register As</legend>
+              <select
+                value={formData.registerAs}
+                onChange={handleUrlChange}
+                name="registerAs"
+              >
+                <option value="eventGoer">Event Goer</option>
+                <option value="eventCreator">Event Creator</option>
+              </select>
+            </Fieldset>
 
 
               <Fieldset>

@@ -19,7 +19,7 @@ import TicketSummary from './assets/components/TicketSummary/TicketSummary'
 import TicketPage from './assets/components/TicketPage/TicketPage'
 import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
-
+import SearchBar from './assets/components/Dashboard/CreateEvent/EventSearch/SearchBar'
 
 
 
@@ -53,6 +53,7 @@ function App() {
     <Route path="/ticket-modal" element={<TicketModel />} />
     <Route path="/event-details" element={<EventDetails />} />
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
+    <Route path="/search-bar" element={<SearchBar />} />
 
     </Routes>
     </Router>

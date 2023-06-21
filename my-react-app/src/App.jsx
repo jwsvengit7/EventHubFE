@@ -20,6 +20,7 @@ import TicketPage from './assets/components/TicketPage/TicketPage'
 import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
 import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.jsx";
+import CreateEvent from "./assets/components/Dashboard/CreateEvent/CreateEvent.jsx";
 
 
 
@@ -33,6 +34,7 @@ function App() {
     <Routes>
     <Route path='/' element={<HomePage />} />
     <Route path='/login' element={<Login />} />
+    <Route path='/createvent' element={<CreateEvent />}/>
     <Route path='/signup' element={<Register />}/>
     <Route path='/signup-creator' element={<Creator />}/>
     <Route path='/user/forgetpassword/authenticate/' element={<ForgetPassword />} />

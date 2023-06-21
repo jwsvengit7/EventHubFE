@@ -179,7 +179,6 @@ height:auto;
 display:flex;
 flex-direction:column;
 align-items:center;
-background:#f8f8f8;
 `
 export const EvnetsBody =styled.div`
 width:85%;

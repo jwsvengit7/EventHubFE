@@ -19,6 +19,7 @@ import TicketSummary from './assets/components/TicketSummary/TicketSummary'
 import TicketPage from './assets/components/TicketPage/TicketPage'
 import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
+import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.jsx";
 
 
 
@@ -46,12 +47,12 @@ function App() {
     
 
     <Route path="/chekout" element={<Chekout />} />
-
+    <Route path="/event/confirmation" element={<Confirmation />} />
     <Route path="/event-details" element={<EventDetails />} />
     <Route path="/app/setuppayment" element={<PaymentSetup />} />
     <Route path="/app/account" element={<Information />} />
     <Route path="/ticket-modal" element={<TicketModel />} />
-    <Route path="/event-details" element={<EventDetails />} />
+    <Route path="/app/event-details" element={<EventDetails />} />
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
 
     </Routes>

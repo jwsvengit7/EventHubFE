@@ -9,7 +9,6 @@ import axios from "axios";
 
 const CreateEvent = () => {
   const TOKEN = localStorage.getItem("TOKEN");
-  console.log(TOKEN)
   if (TOKEN == null) {
     window.location.replace("/login")
   }
@@ -28,13 +27,6 @@ const CreateEvent = () => {
   const [arrays, setArrays] = useState([]);
   let [x, setX] = useState(0);
 
-  const [image,setImage] =useState(null);
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setImage(selectedFile);
-    
-  };
-
   const [formdata, setFormData] = useState({
     description: "",
     organizer: "",
@@ -46,11 +38,16 @@ const CreateEvent = () => {
     endTime:"",
     endDate:"",
     startDate:"",
-    startTime:"",
-    file:image
+    startTime:""
 
   });
-
+  const [image,setImage] =useState(null);
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setImage(selectedFile);
+    
+  };
+ 
 
   const [state, setState] = useState(false);
   
@@ -144,26 +141,62 @@ const CreateEvent = () => {
   
   
 
+  const formDataObj= new FormData();
+
+  const eventRequest = JSON.stringify({
+    description: formdata.description,
+    organizer: formdata.organizer,
+    title: formdata.title,
+    caption:formdata.caption,
+    ticket_class: formdata.ticket_class,
+    category: formdata.category,
+    location:formdata.location,
+    endTime:formdata.endTime,
+    endDate:formdata.endDate,
+    startDate:formdata.startDate,
+    startTime:formdata.startTime
+    
+
+  })
+  formDataObj.append("eventRequest",eventRequest)
+  formDataObj.append("file",image)
   const handle = async (e) => {
     e.preventDefault();
     alert(image);
     console.log(image)
-    const config = {
+   
+  
+
+  const url = "http://localhost:8999/events/create";
+
+    // await axios.post("http://localhost:8999/events/create", 
+    // headers: {
+    //   'Content-Type': 'multipart/form-data',
+    //   'Authorization': `Bearer ${TOKEN}`
+    // },
+    // data:formData
+    
+    // )
+    try{
+
+    const response = await axios({
+      method:"POST",
+      url:url,
+      data:formDataObj,
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': '*',
         'Authorization': `Bearer ${TOKEN}`
-      }
-    };
-  
-    await axios.post("http://localhost:8999/events/create", formdata, config)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+      },
+
+    })
+    console.log(response.status)
+  }
+  catch(e){
+    console.log(e)
+  }
+
+  }
+    
   
     return (
         <>

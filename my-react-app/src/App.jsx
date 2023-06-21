@@ -20,6 +20,9 @@ import TicketPage from './assets/components/TicketPage/TicketPage'
 import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
 import SearchBar from './assets/components/Dashboard/CreateEvent/EventSearch/SearchBar'
+import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.jsx";
+import CreateEvent from "./assets/components/Dashboard/CreateEvent/CreateEvent.jsx";
+import AllEventCreated from "./assets/components/AllEventsCreated/AllEventCreated.jsx";
 
 
 
@@ -32,6 +35,7 @@ function App() {
     <Routes>
     <Route path='/' element={<HomePage />} />
     <Route path='/login' element={<Login />} />
+    <Route path='/createvent' element={<CreateEvent />}/>
     <Route path='/signup' element={<Register />}/>
     <Route path='/signup-creator' element={<Creator />}/>
     <Route path='/user/forgetpassword/authenticate/' element={<ForgetPassword />} />
@@ -46,15 +50,15 @@ function App() {
     
 
     <Route path="/chekout" element={<Chekout />} />
-
+    <Route path="/event/confirmation" element={<Confirmation />} />
     <Route path="/event-details" element={<EventDetails />} />
     <Route path="/app/setuppayment" element={<PaymentSetup />} />
     <Route path="/app/account" element={<Information />} />
     <Route path="/ticket-modal" element={<TicketModel />} />
-    <Route path="/event-details" element={<EventDetails />} />
+    <Route path="/app/event-details" element={<EventDetails />} />
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
     <Route path="/search-bar" element={<SearchBar />} />
-
+    <Route path="/user-event-created" element={<AllEventCreated />} />
     </Routes>
     </Router>
      

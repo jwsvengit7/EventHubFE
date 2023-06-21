@@ -14,7 +14,7 @@ export default function Header(){
                 
                 {(TOKEN==null) ? <Link className='link-login' to="/login">Login</Link> :<Profile /> }
                 
-                <Button>Create Event</Button>
+                <Button><Link className='link-createvent' to="/createvent"> Create Event </Link></Button>
             </Account>
             </Headers>
         </HeaderStyle>

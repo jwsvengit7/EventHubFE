@@ -9,10 +9,13 @@ import { Link } from 'react-router-dom';
 
 function UserProfileModal() {
 
+
   return (
     <>
     
+
     
+
         <Modal >
           <ModalContent>
             <ModalHeader>
@@ -31,25 +34,41 @@ function UserProfileModal() {
                  <Link to="../app/account" style={{textDecoration:"none"}}>
                  <ModalText><p>Payment Account</p>
                  </ModalText></Link>
+
+                
             </ModalInfo>
             <ModalInfo> 
                  <LogOutLogo> <Link to="/login"><img src={logoutLogo}/></Link>
                  </LogOutLogo> 
+
                  <Link to="../logout" style={{textDecoration:"none"}}>
                  <ModalText><p style={{display:"flex", justifyContent:"flex-start"}}>Logout</p>
                  </ModalText>
                  </Link>
+                 
             </ModalInfo>
             </ModalHeader>
             {/* <ModalCloseButton onClick={closeModal}>Close</ModalCloseButton> */}
           </ModalContent>
         </Modal>
-  
+
+
+
+
     </>
   );
 }
 
 export default UserProfileModal;
+
+
+const Main = styled.div`
+  width: 100%;
+  height: 100vh;
+  background: #e5e5e5;
+  color: red;
+  position: relative;
+`;
 
 
 const ModalButton = styled.button`
@@ -63,8 +82,11 @@ const Modal = styled.div`
   justify-content: center;
   background: #ffffff;
   position: absolute;
-  left: 80%;
+  left: 76%;
   top: 30%;
+
+ 
+
   transform: translate(-50%, -50%);
   border: 1px solid #999;
   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);

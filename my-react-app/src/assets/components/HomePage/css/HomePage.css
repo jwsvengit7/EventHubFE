@@ -11,6 +11,12 @@ color: #252D42;
     color: #003366;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.link-createvent{
+    text-decoration: none;
+    font-size: 17px;
+    color: #F8F9FA;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .red{
     color: red;
 

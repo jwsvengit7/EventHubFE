@@ -9,17 +9,25 @@ import Token from './assets/components/Login/Token/Token'
 import ForgetPassword from './assets/components/Login/Forget-Password/ForgetPassword'
 import AuthenticatePassword from './assets/components/Login/Forget-Password/AuthenticatePassword'
 import EventDetails from './assets/components/EventDetails/EventDetails'
+
+
 import Checkout from './assets/components/Checkout/Checkout'
 import Information from './assets/components/Dashboard/Account/Information'
 import PaymentSetup from './assets/components/Dashboard/Account/PaymentSetup'
 import TicketModel from './assets/components/TicketModel/TicketModel'
-import Event from './assets/components/Dashboard/Event'
 
 import TicketSummary from './assets/components/TicketSummary/TicketSummary'
 import TicketPage from './assets/components/TicketPage/TicketPage'
 import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
+
 import Logout from './assets/components/Dashboard/Logout'
+
+import SearchBar from './assets/components/Dashboard/CreateEvent/EventSearch/SearchBar'
+import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.jsx";
+import CreateEvent from "./assets/components/Dashboard/CreateEvent/CreateEvent.jsx";
+import AllEventCreated from "./assets/components/AllEventsCreated/AllEventCreated.jsx";
+
 
 
 
@@ -32,6 +40,7 @@ function App() {
     <Routes>
     <Route path='/' element={<HomePage />} />
     <Route path='/login' element={<Login />} />
+    <Route path='/createvent' element={<CreateEvent />}/>
     <Route path='/signup' element={<Register />}/>
     <Route path='/signup-creator' element={<Creator />}/>
     <Route path='/user/forgetpassword/authenticate/' element={<ForgetPassword />} />
@@ -40,23 +49,22 @@ function App() {
     <Route path="/app/event" element={<Event />} />
     <Route path="/tokens" element={<AuthenticatePassword />} />
 
-    <Route path="/checkout" element={<Checkout />} />
-
-
     <Route path='/ticket' element={<TicketPage />}/>
+    <Route path='checkout' element={<Checkout />} />
     <Route path='/ticket-summary' element={<TicketSummary />}/>
     <Route path='/fund-wallet' element={<FundWalletPage />}/>
-  
+    
 
-    <Route path="/app/event-details" element={<EventDetails />} />
+
+    <Route path="/event/confirmation" element={<Confirmation />} />
     <Route path="/app/setup-account" element={<PaymentSetup />} />
     <Route path="/app/account" element={<Information />} />
-
-
     <Route path="/ticket-modal" element={<TicketModel />} />
+    <Route path="/app/event-details" element={<EventDetails />} />
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
+    <Route path="/search-bar" element={<SearchBar />} />
+    <Route path="/user-event-created" element={<AllEventCreated />} />
     <Route path="/logout" element={<Logout />} />
-
 
     </Routes>
     </Router>

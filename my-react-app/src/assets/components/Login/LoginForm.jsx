@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -46,7 +47,9 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         
          swal("ALERT",message,"success")
 
+
          request_meethod("/")
+
 
 
         

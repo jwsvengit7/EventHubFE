@@ -1,16 +1,15 @@
 import styled from "styled-components";
 import './RegistrationAlert.css'
-import {MdOutlineMailOutline} from "react-icons/md";
 
-export default function RegistrationAlert(){
+export default function RegistrationAlert(props){
     return(
         <BackgroundDiv>
             <h1 >Events</h1>
-            <AlertWelcome >Welcome To Event Hub</AlertWelcome>
-            <AlertName >Temple Jackson</AlertName>
-            <MdOutlineMailOutline className='logo'/>
-            <AlertMessage>Registration Successful</AlertMessage>
-            <AlertFurtherMessage>Please Check Your Mail For Verification Link</AlertFurtherMessage>
+            <AlertWelcome >{props.msg}</AlertWelcome>
+            <AlertName >{props.username}</AlertName>
+            <AlertLogo>{props.logo}</AlertLogo>
+            <AlertMessage>{props.message}</AlertMessage>
+            <AlertFurtherMessage>{props.caption}</AlertFurtherMessage>
         </BackgroundDiv>
     )
 }
@@ -66,4 +65,8 @@ const AlertFurtherMessage =styled.div`
   line-height: 20px;
   text-align: center;
   color: #101828;
+`
+const AlertLogo =styled.div`
+  font-size: 70px;
+  color: #FF5722;
 `

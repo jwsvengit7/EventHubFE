@@ -53,7 +53,33 @@ export default function ConfirmationDetails(){
           }          
 
     },[])
-
+    const handleSendAndPublish = () => {
+        try {
+        setLoading(true);
+        axios
+            .put(
+                `http://localhost:8999/events/activate-event/${id}`,
+                {},
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        Authorization: `Bearer ${TOKEN}`,
+                    },
+                }
+            )
+            .then((response) => {
+                setLoading(false);
+                setEvent(response.data.data);
+                console.log(response.data.data);
+                window.location.reload(`../event/confirmation/${id}`);
+                // Handle the response or any additional logic here
+            })
+        } catch (e) {
+            setLoading(false);
+            console.log(e);
+        }
+    };
  
     return (
 
@@ -136,7 +162,7 @@ export default function ConfirmationDetails(){
                        
                     </TheDetails>
 
-                    {(!showButton) ? "":   <ButtonForm>
+                    {(!showButton) ? "":<ButtonForm onClick={handleSendAndPublish}>
                         Send & Publish
                     </ButtonForm> }
                   

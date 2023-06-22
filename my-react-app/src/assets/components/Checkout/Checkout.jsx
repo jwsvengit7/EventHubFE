@@ -3,7 +3,7 @@ import Footer from "../HomePage/Footer/Footer";
 import Header from "../HomePage/Header/Header";
 import { BannerDiv, Divs,GobackDiv, EventName,UpcomingEvents,EvnetsBody,Fieldset, ButtonForm } from "../Styled/Styled";
 
-export default function Chekout(){
+export default function Checkout(){
     const handleChange=()=>{
         alert(1)
     }

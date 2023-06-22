@@ -8,21 +8,14 @@ import { Link } from 'react-router-dom';
 
 
 function UserProfileModal() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-//   const closeModal = () => {
-//     setIsModalOpen(false);
-//   };
 
   return (
-    <Main>
-      <ModalButton onClick={openModal}>Open Modal</ModalButton>
+    <>
+    
 
-      {isModalOpen && (
+    
+
         <Modal >
           <ModalContent>
             <ModalHeader>
@@ -38,25 +31,36 @@ function UserProfileModal() {
               <ModalInfo> 
                  <PaymentImg><Link to="/login"><img src={paymentImg}/></Link>
                  </PaymentImg> 
+                 <Link to="../app/account" style={{textDecoration:"none"}}>
                  <ModalText><p>Payment Account</p>
-                 </ModalText>
+                 </ModalText></Link>
+
+                
             </ModalInfo>
             <ModalInfo> 
                  <LogOutLogo> <Link to="/login"><img src={logoutLogo}/></Link>
                  </LogOutLogo> 
+
+                 <Link to="../logout" style={{textDecoration:"none"}}>
                  <ModalText><p style={{display:"flex", justifyContent:"flex-start"}}>Logout</p>
                  </ModalText>
+                 </Link>
+                 
             </ModalInfo>
             </ModalHeader>
             {/* <ModalCloseButton onClick={closeModal}>Close</ModalCloseButton> */}
           </ModalContent>
         </Modal>
-      )}
-    </Main>
+
+
+
+
+    </>
   );
 }
 
 export default UserProfileModal;
+
 
 const Main = styled.div`
   width: 100%;
@@ -65,6 +69,7 @@ const Main = styled.div`
   color: red;
   position: relative;
 `;
+
 
 const ModalButton = styled.button`
   /* Style the button to open the modal */
@@ -77,8 +82,11 @@ const Modal = styled.div`
   justify-content: center;
   background: #ffffff;
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 76%;
+  top: 30%;
+
+ 
+
   transform: translate(-50%, -50%);
   border: 1px solid #999;
   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);

@@ -29,6 +29,8 @@ import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.j
 import CreateEvent from "./assets/components/Dashboard/CreateEvent/CreateEvent.jsx";
 import AllEventCreated from "./assets/components/AllEventsCreated/AllEventCreated.jsx";
 import { I } from './assets/components/Styled/Styled'
+import RegistrationAlert from "./assets/components/Alert-Modals/RegistrationAlert.jsx";
+
 
 
 
@@ -66,6 +68,8 @@ function App() {
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
     <Route path="/search-bar" element={<SearchBar />} />
     <Route path="/user-event-created/:id" element={<AllEventCreated />} />
+    <Route path="/user-event-created" element={<AllEventCreated />} />
+    <Route path="/registration-modal" element={<RegistrationAlert />} />
     <Route path="/logout" element={<Logout />} />
 
     </Routes>

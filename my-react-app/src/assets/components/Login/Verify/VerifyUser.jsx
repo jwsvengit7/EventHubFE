@@ -143,20 +143,17 @@ background-position: none;
 }
 `
 
-const Button =styled.button
-`
+const Button =styled.button`
 width: 100%;
 height: 48px;
 outline:none;
 border:0px;
 margin-bottom:30px;
-
 background: #FF5722;
 border-radius: 4px;
 transition-duration:0.5s;
 color:white;
 font-size:17px;
-
 &:hover{
   background:pink
 }

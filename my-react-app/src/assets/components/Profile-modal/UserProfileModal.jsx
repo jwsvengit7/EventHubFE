@@ -38,6 +38,15 @@ function UserProfileModal() {
                 
             </ModalInfo>
             <ModalInfo> 
+                 <PaymentImg><Link to="/login"><img src={paymentImg}/></Link>
+                 </PaymentImg> 
+                 <Link to="../user-event-created/:id" style={{textDecoration:"none"}}>
+                 <ModalText><p>My Events</p>
+                 </ModalText></Link>
+
+                
+            </ModalInfo>
+            <ModalInfo> 
                  <LogOutLogo> <Link to="/login"><img src={logoutLogo}/></Link>
                  </LogOutLogo> 
 

@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { UpcomingEvents,EvnetsBody, Fieldset, Select, ButtonForm, Button } from "../../Styled/Styled";
+import { UpcomingEvents,EvnetsBody, Fieldset, Select, ButtonForm, Button, Preloader, Loader } from "../../Styled/Styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LuUpload } from 'react-icons/lu'
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import icon from './image/Vector.png'
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
+import preloader from '../../CreateAccount/image/preloader.gif'
 
 const CreateEvent = () => {
   const TOKEN = localStorage.getItem("TOKEN");
@@ -25,14 +27,19 @@ const CreateEvent = () => {
   ]
 
   const [arrays, setArrays] = useState([]);
+  const [loading, setLoading] = useState(false);
   let [x, setX] = useState(0);
-
+  let [count,setCount]= useState(0)
+  const [state, setState] = useState(false);
+  const [image,setImage] =useState(null);
+  const [ticketClasses, setTicketClasses] = useState([]);
+  const [imageUrl,setImageUrl] =useState(null)
   const [formdata, setFormData] = useState({
     description: "",
     organizer: "",
     title: "",
     caption: "",
-    ticket_class: [],
+    tickets: [],
     category: "",
     location:"",
     endTime:"",
@@ -41,16 +48,27 @@ const CreateEvent = () => {
     startTime:""
 
   });
-  const [image,setImage] =useState(null);
+  let [formd, setFormd] = useState({
+    class: "",
+    qty: "",
+    des: "",
+    amount: ""
+  });
+
+
+
+
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setImage(selectedFile);
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setImageUrl(objectUrl);
     
+    console.log(image)
+    console.log(imageUrl)
   };
- 
 
-  const [state, setState] = useState(false);
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -58,17 +76,12 @@ const CreateEvent = () => {
       ...prevFormData,
       [name]: value
     }));
-    if (formdata.ticket_class.length > 0) {
+    if (formdata.tickets.length > 0) {
       setState(true);
     }
   };
 
-  let [formd, setFormd] = useState({
-    class: "",
-    qty: "",
-    des: "",
-    amount: ""
-  });
+
 
   const handleTicketClassChange = (e, index) => {
     const updatedTicketClasses = [...ticketClasses];
@@ -92,10 +105,12 @@ const CreateEvent = () => {
     const updatedTicketClasses = [...ticketClasses];
     updatedTicketClasses[index].ticketPrice = e.target.value;
     setTicketClasses(updatedTicketClasses);
-    console.log(formdata)
+
   };
+
+
   
-  const [ticketClasses, setTicketClasses] = useState([]);
+
 
   const addTicket = () => {
     const newTicketClass = {
@@ -112,7 +127,7 @@ const CreateEvent = () => {
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      ticket_class: [...prevFormData.ticket_class, newTicketClass]
+      tickets: [...prevFormData.tickets, newTicketClass]
     }));
 
     setFormd({
@@ -132,10 +147,10 @@ const CreateEvent = () => {
     updatedArrays.splice(indexToRemove, 1);
     setArrays(updatedArrays);
   
-    const updatedTicketClassState = formdata.ticket_class.filter((item, index) => index !== indexToRemove);
+    const updatedTicketClassState = formdata.tickets.filter((item, index) => index !== indexToRemove);
     setFormData(prevFormData => ({
       ...prevFormData,
-      ticket_class: updatedTicketClassState
+      tickets: updatedTicketClassState
     }));
   };
   
@@ -148,7 +163,7 @@ const CreateEvent = () => {
     organizer: formdata.organizer,
     title: formdata.title,
     caption:formdata.caption,
-    ticket_class: formdata.ticket_class,
+    tickets: formdata.tickets,
     category: formdata.category,
     location:formdata.location,
     endTime:formdata.endTime,
@@ -160,24 +175,24 @@ const CreateEvent = () => {
   })
   formDataObj.append("eventRequest",eventRequest)
   formDataObj.append("file",image)
-  const handle = async (e) => {
-    e.preventDefault();
-    alert(image);
-    console.log(image)
-   
-  
 
+ 
+  const handle = async (e) => {
+
+    e.preventDefault();
+    if(formdata.caption==null || formdata.category==null || formdata.description==null || formdata.location==null || formdata.organizer==null || formdata.title==null || formdata.tickets.length<1 || formdata.endDate==null || formdata.endTime==null){
+      swal("ALERT", "Please don't leave any fields empty","error")
+      alert(formdata.caption)
+      return false;
+    }else{
+  
+    console.log(image)
+    console.log(formdata)
+   
   const url = "http://localhost:8999/events/create";
 
-    // await axios.post("http://localhost:8999/events/create", 
-    // headers: {
-    //   'Content-Type': 'multipart/form-data',
-    //   'Authorization': `Bearer ${TOKEN}`
-    // },
-    // data:formData
-    
-    // )
     try{
+      setLoading(true);
 
     const response = await axios({
       method:"POST",
@@ -190,16 +205,49 @@ const CreateEvent = () => {
 
     })
     console.log(response.status)
+    console.log(response)
+    if(response.status==201){
+      setLoading(false);
+      swal("ALERT","Success","success")
+      setInterval(()=>{
+        setCount(count+1);
+        if(count=3){
+         
+           navigate("event/confirmation")
+          console.log(response.data.data)
+          const dataObject= response.data.data;
+
+          const dataString = JSON.stringify(dataObject);
+          localStorage.setItem("Events", dataString);
+        }
+
+      },1000)
+
+    }else{
+      setLoading(false);
+      swal("ALERT","Try Again","error")
+    }
   }
   catch(e){
-    console.log(e)
+    setLoading(false);
+    let message =err.data.data;
+    console.log(message)
+    swal("ALERT",message.message,"error")
   }
-
+    }
   }
     
+
+
   
     return (
         <>
+              {(loading) ?
+      <Preloader>
+        <Loader src={preloader}></Loader>
+      </Preloader>
+      
+      : null}
            <UpcomingEvents>
             <EvnetsBody>
                 <EventCreation method="post" onSubmit={handle} encType="multipart/form-data">
@@ -219,6 +267,7 @@ const CreateEvent = () => {
                   name="title"
                   onChange={handleChange}
                   value={formdata.title}
+                  required
                 />
               </Fieldset>
 
@@ -229,6 +278,7 @@ const CreateEvent = () => {
                   name="caption"
                   onChange={handleChange}
                   value={formdata.caption}
+                  required
                 />
                 </Fieldset>
                 <Fieldset style={{height:"auto"}}>
@@ -245,12 +295,13 @@ const CreateEvent = () => {
                   name="organizer"
                   value={formdata.organizer}
                   onChange={handleChange}
+                  required="true"
                 />
               </Fieldset>
               <div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
 
  
-                <Button  type="button"  onClick={addTicket}>
+                <Button  type="button" required  onClick={addTicket}>
                   Add Ticket
                 </Button>
             
@@ -258,7 +309,7 @@ const CreateEvent = () => {
 
               <Fieldset style={{width:"45%"}} onChange={handleChange}>
                 <legend>Category</legend>
-                <Select name="Category">
+                <Select name="category" required>
   {categoryValues.map((val, index) => (
     <option key={index} value={val}>
       {val}
@@ -281,6 +332,7 @@ const CreateEvent = () => {
               <legend>Ticket class</legend>
               <input
                 type="text"
+                required
                 placeholder="eg  GOLD - VIP"
                 name="ticketClass"
                 value={item.ticketClass}
@@ -296,6 +348,7 @@ const CreateEvent = () => {
                 type="text"
                 name="quantity"
                 placeholder="eg 100"
+                required
                 value={item.quantity}
                 onChange={(e) => handleQuantityChange(e, i)}
               />
@@ -308,6 +361,7 @@ const CreateEvent = () => {
                 value={item.description}
                 name="description"
                 placeholder="Table for 4"
+                required
                 onChange={(e) => handleDescriptionChange(e, i)}
               />
             </Fieldset>
@@ -317,6 +371,7 @@ const CreateEvent = () => {
               <legend>Amount</legend>
               <input type="text" 
               name="ticketPrice"
+              required
               placeholder="eg 100" 
               value={item.ticketPrice}
               onChange={(e) => handleTicketPriceChange(e, i)}
@@ -333,27 +388,47 @@ const CreateEvent = () => {
                     </FormEvent>
                     <UploadImg htmlFor="file-upload">
 
-                    <ButtonForm  type="button" style={{background:"unset",borderBottom:"1px solid #ccc",color:"#222"}}>Upload Event Banner</ButtonForm>
+                    <ButtonForm   type="button" style={{background:"unset",borderBottom:"1px solid #ccc",color:"#222",margin:"0px"}}>Upload Event Banner</ButtonForm>
 
+                    {(imageUrl!=null) ? 
+                       <PreloaderImage><img src={imageUrl} alt={imageUrl}  style={{width:"100%",height:"100%"}} />
+                       </PreloaderImage>
+                    
+                    :
                     <UPLOAD>
-                        <LuUpload  style={{fontSize:"100px"}}/>
-                        <p>Upload from file</p>
-                        <p>or click here to drag image</p>
-                        <p style={{color: "rgba(37, 45, 66, 0.29)"}}>PNG or JPG only</p>
+                    <LuUpload  style={{fontSize:"100px"}}/>
+                    <p>Upload from file</p>
+                    <p>or click here to drag image</p>
+                    <p style={{color: "rgba(37, 45, 66, 0.29)"}}>PNG or JPG only</p>
 
-                    </UPLOAD>
+                </UPLOAD>
+                    
+                    }
+
+                
                    
 
                     </UploadImg>
                     <input type="file" style={{display:"none"}} name="file" id="file-upload"   onChange={handleFileChange}  />
                     <h2>Location</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                    <p>Please Enter a valid Location </p>
 
                     <LocationBox>
-                    <BoxLocal>Online</BoxLocal>
-                    <BoxLocal>Venue</BoxLocal>
+                    
 
-                    </LocationBox>
+                 
+                    <Fieldset style={{width:"90%"}}>
+              <legend>Location</legend>
+              <input
+                type="text"
+                name="location"
+                required
+                placeholder="eg Location"
+                value={FormData.location}
+                onChange={handleChange}
+              />
+            </Fieldset>
+            </LocationBox>
                     <h2>Date & Time</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
                     <WrapEvent>
@@ -362,7 +437,11 @@ const CreateEvent = () => {
                             <img src={icon} alt={icon} />
                             <BoxInLevel>
                                 <p>Event Starts</p>
-                                <span><input type="date" /></span>
+                                <span><input type="date" name="startDate"
+                                   value={formdata.startDate}
+                                   onChange={handleChange}
+                                   required
+                                    /></span>
                             </BoxInLevel>
                         </InLevl>
                     </WrapBox>
@@ -370,8 +449,12 @@ const CreateEvent = () => {
                     <InLevl>
                             <img src={icon} alt={icon} />
                             <BoxInLevel>
-                                <p>Event Starts</p>
-                                <span><input type="date" /></span>
+                                <p>End Date</p>
+                                <span><input type="date" name="endDate" 
+                                   value={formdata.endDate}
+                                   onChange={handleChange}
+                                   required
+                                /></span>
                             </BoxInLevel>
                         </InLevl>
                     </WrapBox>
@@ -379,8 +462,13 @@ const CreateEvent = () => {
                     <InLevl>
                             <img src={icon} alt={icon} />
                             <BoxInLevel>
-                                <p>Event Starts</p>
-                                <span><input type="time" /></span>
+                                <p>Start Time</p>
+                                <span><input type="time"  name="startTime"
+                                required
+                                
+                                value={formdata.startTime}
+                                onChange={handleChange}
+                                /></span>
                             </BoxInLevel>
                         </InLevl>
                     </WrapBox>
@@ -388,8 +476,13 @@ const CreateEvent = () => {
                     <InLevl>
                             <img src={icon} alt={icon} />
                             <BoxInLevel>
-                                <p>Event Starts</p>
-                                <span><input type="time" /></span>
+                                <p>End Time</p>
+                                <span><input type="time" name="endTime"
+                                 value={formdata.endTime}
+                                 onChange={handleChange}
+                                
+                                 required
+                                /></span>
                             </BoxInLevel>
                         </InLevl>
                     </WrapBox>
@@ -508,6 +601,11 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 color: #1D2125;
+`
+
+const PreloaderImage=styled.div`
+width:90%;
+height:90%
 `
 
 const InLevl =styled.div`

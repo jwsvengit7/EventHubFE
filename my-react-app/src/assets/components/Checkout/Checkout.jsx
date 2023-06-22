@@ -25,7 +25,7 @@ return (
     <UpcomingEvents>
             <EvnetsBody>
                
-                <center style={{marginBottom:"100px"}}><h1 style={{fontFamily:"sans-serif",fontSize:"50px"}}>Chekout</h1>
+                <center style={{marginBottom:"100px"}}><h1 style={{fontFamily:"sans-serif",fontSize:"50px"}}>Checkout</h1>
                 <span style={{color:"#ccc"}}>Time Left 5:11</span>
                 </center>
                 <RoleCheckout>

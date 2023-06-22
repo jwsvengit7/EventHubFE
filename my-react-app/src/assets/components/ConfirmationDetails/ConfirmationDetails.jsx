@@ -1,11 +1,66 @@
 import {ButtonForm, UpcomingEvents, SetUp2, ConfirmTitle, EditDetails, EditBox,
-    AllEvent, Line, TheDetails, OtherConfirmation, } from "../Styled/Styled.jsx";
+    AllEvent, Line, TheDetails, OtherConfirmation, Preloader, Loader, } from "../Styled/Styled.jsx";
 import './Confirmation.css'
 import {AiFillEdit} from "react-icons/ai";
 import picture from '../HomePage/image/image-2.png'
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import preloader from '../CreateAccount/image/preloader.gif'
+import { useState } from "react";
+import axios from "axios";
 
 export default function ConfirmationDetails(){
+    const TOKEN=localStorage.getItem("TOKEN")
+    const { id } = useParams();
+    const [loading, setLoading] = useState(false);
+    const [showButton, setButton] = useState(false);
+    const [event,setEvent] =useState([])
+    const [allTickets,setAllTickets] =useState([])
+    const [category,setCategory] =useState("")
+    console.log(id)
+
+    useEffect(()=>{
+        try {
+            setLoading(true);
+            axios.get(`http://localhost:8999/events/view-event/${id}`, {
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': `Bearer ${TOKEN}`
+              },
+            }).then((response) => {
+              setLoading(false);
+              setEvent(response.data.data);
+              console.log(response.data.data);
+          
+              if (response.data.data) {
+                const val = response.data.data.category;
+                const change = val.replaceAll("_", " ");
+                setCategory(change);
+          
+                if (response.data.data.active === true) {
+                  setButton(true);
+                }
+        
+                // console.log(response.data.data.tickets);
+                // console.log(theTicket)
+                setAllTickets(response.data.data.tickets);
+                console.log(allTickets);
+              }
+            });
+          } catch (e) {
+            setLoading(false);
+            console.log(e);
+          }          
+
+    },[])
+
+ 
     return (
+
+        <>
+            
+  
         <div style={{background:"#f8f8f8",paddingBottom:"50px"}}>
             <UpcomingEvents>
                 <SetUp2>
@@ -24,42 +79,76 @@ export default function ConfirmationDetails(){
                     </EditDetails>
                 </SetUp2>
                 <Line/>
-                <OtherConfirmation>
+               
+                    
+                            <OtherConfirmation>
+                            {(loading) ?
+  
+  <center>
+    <Loader style={{margin:"20px"}} src={preloader}></Loader>
+  </center>
+
+
+: 
+                      <>
                     <TheDetails>
                         <p className = 'theDetailsName'>Event Title</p>
-                        <span className='theDetailsDesc'>Eko All Night Pool Party Festival</span>
+                        <span className='theDetailsDesc'>{event.title}</span>
                     </TheDetails>
                     <TheDetails>
                         <p className = 'theDetailsName'>Organizer</p>
-                        <span className='theDetailsDesc'>ACMA people’s platform</span>
+                        <span className='theDetailsDesc'>{event.organizer}</span>
                     </TheDetails>
                     <TheDetails>
                         <p className = 'theDetailsName'>Ticket Class</p>
-                        <span className='theDetailsDesc'>VVIP, VIP & Regular</span>
+                        <span className='theDetailsDesc'>
+                        {allTickets.map((v, i) => {
+
+
+  return (
+    <span>
+      {v.ticketClass+" "}
+    </span>
+  );
+})}
+                        </span>
+                       
                     </TheDetails>
                     <TheDetails>
                         <p className = 'theDetailsName'>Category</p>
-                        <span className='theDetailsDesc'>Event & Lifestyle</span>
+
+                     
+                        <span className='theDetailsDesc'>{category}</span>
                     </TheDetails>
                     <TheDetails>
                         <p className = 'theDetailsName'>Banner</p>
-                        <img className='theDetailsImage' src={picture} alt=''/>
+                        <img className='theDetailsImage' src={event.bannerUrl} alt=''/>
 
                     </TheDetails>
                     <TheDetails>
                         <p className = 'theDetailsName'>Location</p>
-                        <span className='theDetailsDesc'>2b, Herbert Macaulay Road, Yaba, Lagos</span>
+                        <span className='theDetailsDesc'>{event.location}</span>
                     </TheDetails>
                     <TheDetails>
                         <p className = 'theDetailsName'>Date & Time</p>
-                        <p className='theDetailsDesc'>229/12/2021 - 31/12/2021 </p>
-                        <p className='theDetailsDesc2'>06:00PM - 09:00PM</p>
+                        <p className='theDetailsDesc'>{event.startDate} - {event.endDate}</p>
+                        <p className='theDetailsDesc2'>{event.startTime} - {event.endTime}</p>
+
+                       
                     </TheDetails>
-                    <ButtonForm>
+
+                    {(!showButton) ? "":   <ButtonForm>
                         Send & Publish
-                    </ButtonForm>
+                    </ButtonForm> }
+                  
+
+</>
+                            }
                 </OtherConfirmation>
+
+
             </UpcomingEvents>
         </div>
+        </>
     )
 }

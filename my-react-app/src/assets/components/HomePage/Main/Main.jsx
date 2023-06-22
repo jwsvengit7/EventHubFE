@@ -1,7 +1,8 @@
 
 import '../css/HomePage.css'
-import { Link } from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 import arrow from '../image/svg/Arrow 1.svg'
 import image from '../image/event_1.png'
@@ -13,6 +14,27 @@ import styled from 'styled-components';
 
 
 export default function Main(){
+    const [loading, setLoading] = useState(false);
+    const [events,setEvent] =useState([])
+
+    useEffect(()=>{
+        try {
+            setLoading(true);
+            axios.get(`http://localhost:8999/events/view-event/`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            }).then((response) => {
+                setLoading(false);
+                setEvent(response.data.data.content);
+                console.log(response.data.data.content);
+            })
+        }catch (e) {
+            setLoading(false);
+            console.log(e)
+        }
+    },[])
     const event = [
         {
             text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
@@ -68,7 +90,7 @@ export default function Main(){
             date:"Oct",
             month:"Oct"
         }
-     
+
     ]
 
     return (
@@ -121,17 +143,24 @@ export default function Main(){
                 </RoleEventFilter>
 
                 <Events>
-                    {event.map((val,index)=>{
+                    {console.log(events)}
+                    {events.map((val,index)=>{
+                        const date = new Date(val.startDate);
+                        const monthName = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(date);
+                        const realVal =monthName.substring(0,3);
+
+// Get the day of the week name
+
                         return (
                             <EventData
                             key={index} 
                             eventName="eventName"
-                            image ={image} 
-                            name={val.name} 
+                            image ={val.bannerUrl}
+                            name={val.title}
                             date="date" 
-                            text={val.text} 
-                            month={val.month}
-                            day={val.date}
+                            text={val.caption}
+                            month={realVal}
+                            day={date.getDay()}
                             />
                     
                         )

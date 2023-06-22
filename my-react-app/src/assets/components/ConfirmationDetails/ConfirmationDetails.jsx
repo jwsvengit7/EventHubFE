@@ -1,8 +1,7 @@
 import {ButtonForm, UpcomingEvents, SetUp2, ConfirmTitle, EditDetails, EditBox,
-    AllEvent, Line, TheDetails, OtherConfirmation, Preloader, Loader, } from "../Styled/Styled.jsx";
+    AllEvent, Line, TheDetails, OtherConfirmation, Loader, } from "../Styled/Styled.jsx";
 import './Confirmation.css'
 import {AiFillEdit} from "react-icons/ai";
-import picture from '../HomePage/image/image-2.png'
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import preloader from '../CreateAccount/image/preloader.gif'

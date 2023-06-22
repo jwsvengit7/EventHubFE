@@ -9,6 +9,7 @@ function TicketPage() {
     <>
     <Header />
     <TicketForm />
+    
     <Footer/>
     </>
 

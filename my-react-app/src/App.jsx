@@ -22,12 +22,15 @@ import FundWalletPage from './assets/components/FundWallet/FundWalletPage'
 import UserProfileModal from './assets/components/Profile-modal/UserProfileModal'
 
 import Logout from './assets/components/Dashboard/Logout'
+import Event from './assets/components/Dashboard/Event'
 
 import SearchBar from './assets/components/Dashboard/CreateEvent/EventSearch/SearchBar'
 import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.jsx";
 import CreateEvent from "./assets/components/Dashboard/CreateEvent/CreateEvent.jsx";
 import AllEventCreated from "./assets/components/AllEventsCreated/AllEventCreated.jsx";
+import { I } from './assets/components/Styled/Styled'
 import RegistrationAlert from "./assets/components/Alert-Modals/RegistrationAlert.jsx";
+
 
 
 
@@ -51,25 +54,27 @@ function App() {
     <Route path="/tokens" element={<AuthenticatePassword />} />
 
     <Route path='/ticket' element={<TicketPage />}/>
-    <Route path='checkout' element={<Checkout />} />
+    <Route path='/checkout' element={<Checkout />} />
     <Route path='/ticket-summary' element={<TicketSummary />}/>
     <Route path='/fund-wallet' element={<FundWalletPage />}/>
     
 
 
-    <Route path="/event/confirmation" element={<Confirmation />} />
+    <Route path="/event/confirmation/:id" element={<Confirmation />} />
     <Route path="/app/setup-account" element={<PaymentSetup />} />
     <Route path="/app/account" element={<Information />} />
     <Route path="/ticket-modal" element={<TicketModel />} />
     <Route path="/app/event-details" element={<EventDetails />} />
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
     <Route path="/search-bar" element={<SearchBar />} />
+    <Route path="/user-event-created/:id" element={<AllEventCreated />} />
     <Route path="/user-event-created" element={<AllEventCreated />} />
     <Route path="/registration-modal" element={<RegistrationAlert />} />
     <Route path="/logout" element={<Logout />} />
 
     </Routes>
     </Router>
+
      
     </>
   )

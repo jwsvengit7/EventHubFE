@@ -60,5 +60,12 @@ function TicketForm() {
 
 export default TicketForm
 
+const BackgroundImageTicket= styled.div`
+background-image:url(${bg});
+width:100%;
+height:600px;
+marigin-bottom:30px;
+display:flex;
+justify-content:center
 
-
+`

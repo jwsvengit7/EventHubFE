@@ -936,7 +936,7 @@ export const OtherConfirmation =styled.div`
   margin-bottom: 50px;
 `
 export const TheDetails =styled.div`
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 `
 export const TheDetails2 =styled.div`
   margin-bottom: 26px;
@@ -1024,10 +1024,33 @@ export const Active =styled.div`
   border-radius: 16px;
   p{
     font-weight: 400;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 22px;
     letter-spacing: 0.15px;
     color: #34A853;
+  }
+`
+export const InActive =styled.div`
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ 
+  gap: 4px;
+  width: 95px;
+  height: 30px;
+  background: #F6FEF9;
+  border: 1px solid #A6F4C5;
+  border-radius: 16px;
+  a{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.15px;
+    text-decoration:none;
+    color: red;
   }
 `
 export const TicketSold =styled.div`
@@ -1035,11 +1058,12 @@ export const TicketSold =styled.div`
   height: 22px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 22px;
   letter-spacing: 0.15px;
   text-decoration-line: underline;
   color: #FF5722;
+  text-decoration:none
 
 `
 

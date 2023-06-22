@@ -1,16 +1,14 @@
 
 .title{
     font-weight: 800;
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 26px;
     color: #252D42;
 }
 
 .text{
     margin-top: -16px;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 13px;
     color: #252D42;
 }
 
@@ -19,20 +17,19 @@
     width: 40%;
     height: 27px;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 27px;
     color: #101828;
 }
 .editIcon{
     width: 50%;
     margin-left: 10%;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .allEvents{
     font-weight: 600;
-    font-size: 16px;
-    line-height: 140%;
+    font-size: 13px;
     letter-spacing: 0.15px;
     color: #FF5722;
 }
@@ -43,27 +40,24 @@
 
 .theDetailsName{
     font-weight: 800;
-    font-size: 24px;
-    line-height: 33px;
+    font-size: 20px;
     color: #252D42;
 }
 
 .theDetailsDesc{
     margin-top: 20px;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 27px;
+    font-size: 20px;
     color: #252D42;
 }
 .theDetailsImage{
-    width: 100%;
+    width: 50%;
     height: 485px;
     border: 1px solid #979797;
 }
 .theDetailsDesc2{
     margin-top: -10px;
     font-weight: 400;
-    font-size: 24px;
     line-height: 27px;
     color: #252D42;
 }

@@ -1,193 +1,608 @@
 import styled from "styled-components";
-import {React ,useState} from "react";
-import "./bookevent.css";
-import Header from "../../HomePage/Header/Header";
-import Footer from "../../HomePage/Footer/Footer";
-import TicketModel from "../../TicketModel/TicketModel.jsx";
-import { CiCircleAlert } from "react-icons/ci";
-import { IoIosArrowDown } from "react-icons/io";
-import { FaCalendarAlt } from "react-icons/fa";
-import upload from "./upload.svg";
+import { UpcomingEvents,EvnetsBody, Fieldset, Select, ButtonForm, Button } from "../../Styled/Styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LuUpload } from 'react-icons/lu'
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+import icon from './image/Vector.png'
+import { useState } from "react";
+import axios from "axios";
 
 const CreateEvent = () => {
-    const [eventFields, setEventField] = useState(
-        {
-            title: "",
-            organizer: "",
-            class: "",
-            category: "",
-            banner: "",
-            location: "",
-            startDate: "",
-            endDate: "",
-            stateTime: "",
-            endTime: ""
-        }
-    );
-    const [ticketModal , setTicketModal] = useState(false);
+  const TOKEN = localStorage.getItem("TOKEN");
+  if (TOKEN == null) {
+    window.location.replace("/login")
+  }
 
-    const toggleTicketModal = () => {
-        setTicketModal(!ticketModal);
+  const categoryValues = [
+    "Food & Drink",
+    "File Media & Entertainment",
+    "Event & Lifestyle",
+    "Special Interest",
+    "Religious & Spirituality",
+    "Technology",
+    "Government & Politics",
+    "Education"
+  ]
+
+  const [arrays, setArrays] = useState([]);
+  let [x, setX] = useState(0);
+
+  const [formdata, setFormData] = useState({
+    description: "",
+    organizer: "",
+    title: "",
+    caption: "",
+    ticket_class: [],
+    category: "",
+    location:"",
+    endTime:"",
+    endDate:"",
+    startDate:"",
+    startTime:""
+
+  });
+  const [image,setImage] =useState(null);
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setImage(selectedFile);
+    
+  };
+ 
+
+  const [state, setState] = useState(false);
+  
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
+    if (formdata.ticket_class.length > 0) {
+      setState(true);
     }
+  };
 
+  let [formd, setFormd] = useState({
+    class: "",
+    qty: "",
+    des: "",
+    amount: ""
+  });
+
+  const handleTicketClassChange = (e, index) => {
+    const updatedTicketClasses = [...ticketClasses];
+    updatedTicketClasses[index].ticketClass = e.target.value;
+    setTicketClasses(updatedTicketClasses);
+  };
+  
+  const handleQuantityChange = (e, index) => {
+    const updatedTicketClasses = [...ticketClasses];
+    updatedTicketClasses[index].quantity = e.target.value;
+    setTicketClasses(updatedTicketClasses);
+  };
+  
+  const handleDescriptionChange = (e, index) => {
+    const updatedTicketClasses = [...ticketClasses];
+    updatedTicketClasses[index].description = e.target.value;
+    setTicketClasses(updatedTicketClasses);
+  };
+  
+  const handleTicketPriceChange = (e, index) => {
+    const updatedTicketClasses = [...ticketClasses];
+    updatedTicketClasses[index].ticketPrice = e.target.value;
+    setTicketClasses(updatedTicketClasses);
+    console.log(formdata)
+  };
+  
+  const [ticketClasses, setTicketClasses] = useState([]);
+
+  const addTicket = () => {
+    const newTicketClass = {
+      id: x + 1,
+      ticketClass: formd.class,
+      quantity: formd.qty,
+      description: formd.des,
+      ticketPrice: formd.amount
+    };
+    setTicketClasses((prevTicketClasses) => [...prevTicketClasses, newTicketClass]);
+    setX((prevX) => prevX + 1);
+    setArrays((prevArrays) => [...prevArrays, newTicketClass]);
+    setState(true);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      ticket_class: [...prevFormData.ticket_class, newTicketClass]
+    }));
+
+    setFormd({
+      class: "",
+      qty: "",
+      des: "",
+      amount: ""
+    });
+  };
+
+  const removeDelete = (indexToRemove) => {
+    const updatedTicketClasses = [...ticketClasses];
+    updatedTicketClasses.splice(indexToRemove, 1);
+    setTicketClasses(updatedTicketClasses);
+  
+    const updatedArrays = [...arrays];
+    updatedArrays.splice(indexToRemove, 1);
+    setArrays(updatedArrays);
+  
+    const updatedTicketClassState = formdata.ticket_class.filter((item, index) => index !== indexToRemove);
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      ticket_class: updatedTicketClassState
+    }));
+  };
+  
+  
+
+  const formDataObj= new FormData();
+
+  const eventRequest = JSON.stringify({
+    description: formdata.description,
+    organizer: formdata.organizer,
+    title: formdata.title,
+    caption:formdata.caption,
+    ticket_class: formdata.ticket_class,
+    category: formdata.category,
+    location:formdata.location,
+    endTime:formdata.endTime,
+    endDate:formdata.endDate,
+    startDate:formdata.startDate,
+    startTime:formdata.startTime
+    
+
+  })
+  formDataObj.append("eventRequest",eventRequest)
+  formDataObj.append("file",image)
+  const handle = async (e) => {
+    e.preventDefault();
+    alert(image);
+    console.log(image)
+   
+  
+
+  const url = "http://localhost:8999/events/create";
+
+    // await axios.post("http://localhost:8999/events/create", 
+    // headers: {
+    //   'Content-Type': 'multipart/form-data',
+    //   'Authorization': `Bearer ${TOKEN}`
+    // },
+    // data:formData
+    
+    // )
+    try{
+
+    const response = await axios({
+      method:"POST",
+      url:url,
+      data:formDataObj,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${TOKEN}`
+      },
+
+    })
+    console.log(response.status)
+  }
+  catch(e){
+    console.log(e)
+  }
+
+  }
+    
+  
     return (
         <>
-            <div className="header"><Header /></div>
-            {/* -----------------------------------------------------event-book Container - Body */}
-            <div className="event-book-container">
-                {/* -----------------------------------event-book Details - Div */}
-                <div className="event-book-details">
-                    <div className="book-details">
-                        <div className="m-logo">
-                            <a href="src/component/pages#" >Event</a>
-                        </div>
+           <UpcomingEvents>
+            <EvnetsBody>
+                <EventCreation method="post" onSubmit={handle} encType="multipart/form-data">
+                    <HeaderEvent>
+                        <IconHoled>
+                            <FontAwesomeIcon icon={faGear} />
+                        </IconHoled>
+                        <P>Note that for every ticket sold, there would be a 9.99% deduction.</P>
+                    </HeaderEvent>
+                    <h2>Basic Info</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                    <FormEvent >
+                    <Fieldset>
+                <legend>Event Title</legend>
+                <input
+                  type="text"
+                  name="title"
+                  onChange={handleChange}
+                  value={formdata.title}
+                />
+              </Fieldset>
 
-                        <div className="event-message-alert">
-                            <CiCircleAlert className="a-icon" />
-                            <p>
-                                Note that for every ticket sold, there would be a 9.99%
-                                deduction.
-                            </p>
-                        </div>
-                        {/* -----------------------------------event-book Header - Div */}
-                        <div className="event-book-header">
-                            <h2>Basic Info</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur.</p>
-                        </div>
-                        {/* ----------------------------------- Input Form - Div */}
+              <Fieldset>
+                <legend>Caption</legend>
+                <input
+                  type="text"
+                  name="caption"
+                  onChange={handleChange}
+                  value={formdata.caption}
+                />
+                </Fieldset>
+                <Fieldset style={{height:"auto"}}>
+                <legend>Description</legend>
+                <TextArea  onChange={handleChange} name="description" value={formdata.description}>
 
-                        <form
-                            action="src/component/pages"
-                            method="post"
-                            target="_blank"
-                            autocomplete="off"
-                            className="form-div"
-                        >
-                            {/* -----------------------------------Event Title Input - Div */}
-                            <div className="event-title-input-container">
-                                <input type="text" id="event-title-input" />
-                                <label for="event-title-input" class="title-label">
-                                    Event Title
-                                </label>
-                            </div>
-                            {/* -----------------------------------Ogranizer Input - Div */}
-                            <div className="event-organizer-input-container">
-                                <input type="text" id="event-organizer-input" />
-                                <label for="organizer-input" class="organizer-label">
-                                    Organizer
-                                </label>
-                            </div>
-                            {/* -----------------------------------Event Models - Div */}
-                            <div className="event-modals">
-                                <div className="ticket-modal">
-                                    <select name="ticket" id="ticket-input" onClick={toggleTicketModal}>
-                                    </select>
-                                    <label for="ticket-input" class="ticket-label">
-                                        Ticket Class
-                                    </label>
-                                    <IoIosArrowDown className="arrow-down-icon" />
-                                </div>
+                </TextArea>
+               
+                </Fieldset>
+              <Fieldset>
+                <legend>Organizer</legend>
+                <input
+                  type="text"
+                  name="organizer"
+                  value={formdata.organizer}
+                  onChange={handleChange}
+                />
+              </Fieldset>
+              <div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
 
-                                <div className="category-modal">
-                                    <select name="ticket" id="category-input">
-                                        <option value="Food & Drinks">Food & Drinks</option>
-                                        <option value="Film Media & Entertainment">Film Media & Entertainment</option>
-                                        <option value="Event & Lifestyle">Event & Lifestyle</option>
-                                        <option value="Special Interest">Special Interest</option>
-                                        <option value="Religious & Spirituality">Religious & Spirituality</option>
-                                        <option value="Technology">Technology</option>
-                                        <option value="Government & Politics">Government & Politics</option>
-                                        <option value="Education">Education</option>
-                                    </select>
-                                    <label for="ticket-input" class="category-label">
-                                        Category
-                                    </label>
-                                    <IoIosArrowDown className="arrow-down-icon" />
-                                </div>
-                            </div>
+ 
+                <Button  type="button"  onClick={addTicket}>
+                  Add Ticket
+                </Button>
+            
 
-                            {/* -----------------------------------Upload Container - Div */}
-                            <div className="upload-container">
-                                <span className="span1">Upload Event Banner</span>
-                                <div className="upload-line"></div>
-                                <img src={upload} className="upload-icon" alt="upload icon" />
-                                <span className="span1">Upload from file</span>
-                                <span className="span2">or click here to drag image</span>
-                                <span className="span3">PNG or JPG only</span>
-                            </div>
 
-                            {/* -----------------------------------Set Location Header - Div */}
-                            <div className="set-location-header">
-                                <h2>Location</h2>
-                                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                                <div className="location-btn">
-                                    <div className="online-btn">Online</div>
-                                    <div className="venue-btn">Venue</div>
-                                </div>
-                            </div>
+              <Fieldset style={{width:"45%"}} onChange={handleChange}>
+                <legend>Category</legend>
+                <Select name="Category">
+  {categoryValues.map((val, index) => (
+    <option key={index} value={val}>
+      {val}
+    </option>
+  ))}
+</Select>
 
-                            {/* -----------------------------------Save button - Div */}
-                            <div className="set-date-time-header">
-                                <h2>Date & Time</h2>
-                                <p>Lorem ipsum dolor sit amet consectetur.</p>
+              </Fieldset>
+              </div>
+              <h1>Ticket</h1>
 
-                                <div className="date-container">
-                                    <div className="start-date-btn">
-                                        <FaCalendarAlt className="calendar-icon" />
-                                        <div className="date-input-div">
-                                            <input type="date" id="event-start-input" placeholder="DD/MM/YYYY" />
-                                            <label for="event-start-input" class="event-start-label">
-                                                Event Starts
-                                            </label>
-                                        </div>
-                                    </div>
+{state &&
+  ticketClasses.length > 0 &&
+  ticketClasses.map((item,i) => (
+    <ul key={item.id} style={{ width: "100%", height: "auto" }}>
+      <TicketContent>
+        <ContentTicketClass>
+          <TicketClassIn>
+            <Fieldset>
+              <legend>Ticket class</legend>
+              <input
+                type="text"
+                placeholder="eg  GOLD - VIP"
+                name="ticketClass"
+                value={item.ticketClass}
+                onChange={(e) => handleTicketClassChange(e, i)}
+                
+              />
+            </Fieldset>
+          </TicketClassIn>
+          <TicketAddRemove>
+            <Fieldset>
+              <legend>Quantity</legend>
+              <input
+                type="text"
+                name="quantity"
+                placeholder="eg 100"
+                value={item.quantity}
+                onChange={(e) => handleQuantityChange(e, i)}
+              />
+            </Fieldset>
+          </TicketAddRemove>
+          <DescriptionType>
+            <Fieldset style={{ height: "auto" }}>
+              <legend>Description</legend>
+              <TextArea
+                value={item.description}
+                name="description"
+                placeholder="Table for 4"
+                onChange={(e) => handleDescriptionChange(e, i)}
+              />
+            </Fieldset>
+          </DescriptionType>
+          <Amount>
+            <Fieldset>
+              <legend>Amount</legend>
+              <input type="text" 
+              name="ticketPrice"
+              placeholder="eg 100" 
+              value={item.ticketPrice}
+              onChange={(e) => handleTicketPriceChange(e, i)}
+               />
+            </Fieldset>
+          </Amount>
+          <CloseButton onClick={() => removeDelete(i)}>x</CloseButton>
+        </ContentTicketClass>
+      </TicketContent>
+    </ul>
+  ))}
+            
 
-                                    <div className="end-date-btn">
-                                        <FaCalendarAlt className="calendar-icon" />
-                                        <div className="date-input-div">
-                                            <input type="date" id="event-start-input" placeholder="DD/MM/YYYY" />
-                                            <label for="event-start-input" class="event-start-label">
-                                                Event Ends
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                    </FormEvent>
+                    <UploadImg htmlFor="file-upload">
 
-                                <div className="date-container">
-                                    <div className="start-date-btn">
-                                        <FaCalendarAlt className="calendar-icon" />
-                                        <div className="date-input-div">
-                                            <input type="time" id="event-start-input" placeholder="00:00AM" />
-                                            <label for="event-start-input" class="event-start-label">
-                                                Start Time
-                                            </label>
-                                        </div>
-                                    </div>
+                    <ButtonForm  type="button" style={{background:"unset",borderBottom:"1px solid #ccc",color:"#222"}}>Upload Event Banner</ButtonForm>
 
-                                    <div className="end-date-btn">
-                                        <FaCalendarAlt className="calendar-icon" />
-                                        <div className="date-input-div">
-                                            <input type="time" id="event-start-input" placeholder="00:00PM" />
-                                            <label for="event-start-input" class="event-start-label">
-                                                End Time
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <UPLOAD>
+                        <LuUpload  style={{fontSize:"100px"}}/>
+                        <p>Upload from file</p>
+                        <p>or click here to drag image</p>
+                        <p style={{color: "rgba(37, 45, 66, 0.29)"}}>PNG or JPG only</p>
 
-                            {/* -----------------------------------Save button - Div */}
-                            <button type="" class="btn-save">
-                                Save & Continue
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div className="p-footer"><Footer /></div>
-            {ticketModal && <TicketModel modalToggle={toggleTicketModal}/>}
+                    </UPLOAD>
+                   
+
+                    </UploadImg>
+                    <input type="file" style={{display:"none"}} name="file" id="file-upload"   onChange={handleFileChange}  />
+                    <h2>Location</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+
+                    <LocationBox>
+                    <BoxLocal>Online</BoxLocal>
+                    <BoxLocal>Venue</BoxLocal>
+
+                    </LocationBox>
+                    <h2>Date & Time</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                    <WrapEvent>
+                    <WrapBox>
+                        <InLevl>
+                            <img src={icon} alt={icon} />
+                            <BoxInLevel>
+                                <p>Event Starts</p>
+                                <span><input type="date" /></span>
+                            </BoxInLevel>
+                        </InLevl>
+                    </WrapBox>
+                    <WrapBox>
+                    <InLevl>
+                            <img src={icon} alt={icon} />
+                            <BoxInLevel>
+                                <p>Event Starts</p>
+                                <span><input type="date" /></span>
+                            </BoxInLevel>
+                        </InLevl>
+                    </WrapBox>
+                    <WrapBox>
+                    <InLevl>
+                            <img src={icon} alt={icon} />
+                            <BoxInLevel>
+                                <p>Event Starts</p>
+                                <span><input type="time" /></span>
+                            </BoxInLevel>
+                        </InLevl>
+                    </WrapBox>
+                    <WrapBox>
+                    <InLevl>
+                            <img src={icon} alt={icon} />
+                            <BoxInLevel>
+                                <p>Event Starts</p>
+                                <span><input type="time" /></span>
+                            </BoxInLevel>
+                        </InLevl>
+                    </WrapBox>
+
+                    </WrapEvent>
+                    <ButtonForm type="submit">Save & Continue</ButtonForm>
+
+                </EventCreation>
+
+
+            </EvnetsBody>
+            </UpcomingEvents>
+
+
+
+        
         </>
-    );
-};
-
+    )
+}
 export default CreateEvent;
+
+const EventCreation =styled.form`
+width:100%;
+height:auto;
+margin-top:30px
+
+`
+const P =styled.p`
+font-weight: 600;
+font-size: 16px;
+line-height: 140%;
+letter-spacing: 0.15px;
+color: #932F19;`
+
+const HeaderEvent = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 16px;
+padding:20px;
+width: 96.6%;
+height:50px;
+background: #FEFBE8;
+border: 1px solid #932F19;
+border-radius: 6px;
+margin-bottom:50px
+`
+
+const IconHoled =styled.div`
+width:50px;
+height:50px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:60px;
+border: 2px solid #932F19;
+
+
+`
+
+const FormEvent =styled.form`
+width:100%;
+`
+const UploadImg =styled.label`
+box-sizing: border-box;
+width: 100%;
+height: 485px;
+cursor:pointer;
+background: rgba(0, 0, 0, 0.03);
+border: 1px dashed #979797;
+display:flex;
+align-items:center;
+flex-direction:column
+`
+const LocationBox =styled.div`
+width:35%;
+height:auto;
+display:flex;
+justify-content:space-between
+`
+
+const BoxLocal =styled.div`
+width: 203px;
+height: 90px;
+background: rgba(0, 50, 47, 0.05);
+border-radius: 4px;
+display:flex;
+justify-content:center;
+align-items:center
+`
+const WrapEvent=styled.div`
+width:55%;
+height:250px;
+margin-bottom:30px;
+display:flex;
+flex-wrap:wrap
+`
+const WrapBox=styled.div`
+width: 300px;
+height: 74px;
+box-sizing: border-box;
+background: #FFFFFF;
+border: 1px solid rgba(37, 45, 66, 0.29);
+border-radius: 4px;
+margin-right:10px;
+display:flex;
+justify-content:center;
+align-items:center
+`
+const UPLOAD =styled.div`
+width:400px;
+height:350px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+color: #1D2125;
+`
+
+const InLevl =styled.div`
+width: 150px;
+height: 80px;
+display:flex;
+justify-content:center;
+align-items:center
+
+`
+const BoxInLevel =styled.div`
+width:70%;
+height:auto;
+margin:5px;
+p,span{
+    font-size:14px;
+    margin:2px
+
+}
+input{
+  border:0px;
+  outline:none;
+}
+`
+const TextArea =styled.textarea`
+border:0px;
+background:unset;
+outline:none
+
+`
+
+const TicketContent=styled.div`
+width:100%;
+height:auto;
+`
+const ContentTicketClass=styled.div`
+width:100%;
+height:auto;
+display:flex
+
+`
+
+const TicketClassIn =styled.div`
+width:20%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center
+
+`
+const TicketAddRemove =styled.div`
+width:20%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+input{
+    width:100%; 
+}
+
+`
+const DescriptionType =styled.div`
+width:30%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+Fieldset{
+   
+        width:100%;
+        height:80%
+    }
+}
+
+`
+
+const Amount =styled.div`
+width:30%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+Fieldset{
+width:80%
+}
+`
+
+const CloseButton =styled.button`
+margin-top:20px;
+width:40px;
+height:40px;
+border-radius:50px;
+background:red;
+color:white;
+font-size:25px;
+cursor:pointer;
+border:0px
+`

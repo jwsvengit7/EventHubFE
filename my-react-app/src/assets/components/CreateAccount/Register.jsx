@@ -5,6 +5,9 @@ import Footer from '../HomePage/Footer/Footer'
 import FormRegister from './FormRegister'
 
 const Register = () => {
+  if(localStorage.getItem("TOKEN")!=null){
+    window.location.replace("app/event")
+}
   return (
      <>
       <Header />

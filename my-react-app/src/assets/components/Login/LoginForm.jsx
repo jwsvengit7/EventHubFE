@@ -44,8 +44,12 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       
         console.log(result)
         localStorage.setItem("TOKEN",Token)
+        
          swal("ALERT",message,"success")
-         request_meethod("/app/dashboard")
+
+
+         request_meethod("/")
+
 
 
         

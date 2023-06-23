@@ -232,7 +232,7 @@ const CreateEvent = () => {
     setLoading(false);
     let message =err.data.data;
     console.log(message)
-    swal("ALERT",message.message,"error")
+    swal("ALERT","Try Again","error")
   }
     }
   }

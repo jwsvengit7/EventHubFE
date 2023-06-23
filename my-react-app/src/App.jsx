@@ -10,7 +10,7 @@ import ForgetPassword from './assets/components/Login/Forget-Password/ForgetPass
 import AuthenticatePassword from './assets/components/Login/Forget-Password/AuthenticatePassword'
 import EventDetails from './assets/components/EventDetails/EventDetails'
 
-
+import UpdateInfo from './assets/components/Dashboard/Account/UpdateInfo'
 import Checkout from './assets/components/Checkout/Checkout'
 import Information from './assets/components/Dashboard/Account/Information'
 import PaymentSetup from './assets/components/Dashboard/Account/PaymentSetup'
@@ -70,6 +70,7 @@ function App() {
     <Route path="/user-event-created" element={<AllEventCreated />} />
     <Route path="/registration-modal" element={<RegistrationAlert />} />
     <Route path="/logout" element={<Logout />} />
+    <Route path='/app/update' element={<UpdateInfo />} />
 
     </Routes>
     </Router>

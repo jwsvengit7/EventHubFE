@@ -12,7 +12,7 @@ export default function Header(){
 
         <HeaderStyle>
             <Headers>
-            <LogoDiv><h1 className='eventLogo'>Event</h1></LogoDiv>
+            <LogoDiv><Link to="/" style={{textDecoration:"none"}} ><h1 className='eventLogo'>Event</h1></Link></LogoDiv>
             <Account>
                 
                 {(TOKEN==null) ? <Link className='link-login' to="/login">Login</Link> :<Profile /> }

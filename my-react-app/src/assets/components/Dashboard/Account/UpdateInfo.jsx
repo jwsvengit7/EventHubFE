@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import preloader from '../../CreateAccount/image/preloader.gif'
 
-const PaymentSetup = () => {
+const UpdateInfo = () => {
   const TOKEN = localStorage.getItem("TOKEN");
 
   if (TOKEN == null) {
@@ -26,6 +26,7 @@ const PaymentSetup = () => {
       .then(response => {
         console.log(response.data.data);
         setBanks(response.data.data);
+    
       });
   }, []);
  
@@ -37,26 +38,25 @@ const PaymentSetup = () => {
     try {
       setLoading(true);
     
-    axios.get("http://localhost:8999/api/v1/bank/getName", {
+    axios.put("http://localhost:8999/api/v1/bank/updateAccount", formData ,{
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Authorization': `Bearer ${TOKEN}`
-      },
-      params: {
-        bankName: bankName,
-        accountNumber: accountNumber
       }
+   
     })
     .then(response => {
       const data = response.data;
       console.log(data);
       setLoading(false)
       setAccountName(data.data[0].data.account_name)
+      swal("ALERT",accountName +" Updated","error")
       
+    
     })
     .catch(error => {
       setLoading(false)
-      swal("ALERT","Error ","error")
+      swal("ALERT","Try Again Later","error")
       console.log(error);
     });
   }
@@ -85,7 +85,7 @@ const PaymentSetup = () => {
       .then(response => {
         const data = response.data;
         console.log(data);
-        swal("ALERT","Account Have been added","success")
+        swal("ALERT",data.message,"success")
         setLoading(false);
       })
       .catch(error => {
@@ -115,7 +115,7 @@ const PaymentSetup = () => {
           <Setup>
             <Details>
               <DiviNFO>
-                <h1>Payment information</h1>
+                <h1>Update information</h1>
                 <p>Please input all information correctly</p>
               </DiviNFO>
               <AccountNFO>
@@ -148,7 +148,7 @@ const PaymentSetup = () => {
               </ButtonForm>} 
               
             
-              {(accountName!="") ? <Button onClick={saved}>Saved</Button> :""}
+              {(accountName!="") ? <Button onClick={saved}>UPDATE</Button> :""}
             </FormAccount>
           </Setup>
         </EvnetsBody>
@@ -159,4 +159,4 @@ const PaymentSetup = () => {
   );
 };
 
-export default PaymentSetup;
+export default UpdateInfo;

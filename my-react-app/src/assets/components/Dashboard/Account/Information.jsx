@@ -41,6 +41,7 @@ const Information = () => {
       .then((data) => {
         console.log(data);
         setAccounts(data.data.data);
+        console.log(accounts.length)
         setLoading(false);
       })
       .catch((e) => {
@@ -62,7 +63,11 @@ const Information = () => {
               </Loader>
             ) : (
               <FormAccount>
-                {accounts.length > 0 &&
+              
+
+                  {
+                
+                accounts.length > 0 &&
                   accounts.map((val, index) => (
                     <React.Fragment key={index}>
                       <Details>
@@ -71,7 +76,7 @@ const Information = () => {
                           <h3>{val.accountName}</h3>
                         </DiviNFO>
                         <AccountNFO>
-                          <Link to="/app/account">
+                          <Link to="http://localhost:5173/app/update">
                             <Button>Edit</Button>
                           </Link>
                         </AccountNFO>

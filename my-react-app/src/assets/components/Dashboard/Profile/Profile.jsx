@@ -14,7 +14,7 @@ const Profile = () => {
 
   useEffect(() => {
 
-  
+      console.log(userdetails)
       const Name = userdetails.userFullName;
       const namesArray = Name.split(" ");
       setUser(namesArray[0]);

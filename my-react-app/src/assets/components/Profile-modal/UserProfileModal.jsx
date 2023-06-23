@@ -32,6 +32,15 @@ function UserProfileModal(props) {
                   <p>{props.email}</p>
                 </ProfileName>
               </ModalDetails>
+                <ModalInfo>
+                    <PaymentImg><Link to="/login"><img src={paymentImg}/></Link>
+                    </PaymentImg>
+                    <Link to="../" style={{textDecoration:"none"}}>
+                        <ModalText><p>Home</p>
+                        </ModalText></Link>
+
+
+                </ModalInfo>
               <ModalInfo> 
                  <PaymentImg><Link to="/login"><img src={paymentImg}/></Link>
                  </PaymentImg> 
@@ -90,7 +99,7 @@ const ModalButton = styled.button`
 
 const Modal = styled.div`
   width: 293px;
-  height: 269px;
+  height: auto;
   display: flex;
   justify-content: center;
   background: #ffffff;

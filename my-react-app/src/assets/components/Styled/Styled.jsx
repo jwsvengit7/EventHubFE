@@ -922,9 +922,10 @@ export const EditBox =styled.div`
   border: 1px solid #101828;
   border-radius: 6px;
 `
-export const AllEvent =styled.div`
+export const AllEvent =styled.a`
   margin-top: 30px;
   margin-left: 24px;
+  
 `
 export const Line = styled.div`
   width: 85%;

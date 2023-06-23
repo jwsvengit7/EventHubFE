@@ -98,7 +98,7 @@ export default function ConfirmationDetails(){
                             <AiFillEdit className='editIcon'/>
                             <p className='edit'>Edit</p>
                         </EditBox>
-                        <AllEvent>
+                        <AllEvent href="/user-event-created/0">
                             <p className='allEvents'>View all Events created</p>
                         </AllEvent>
                     </EditDetails>

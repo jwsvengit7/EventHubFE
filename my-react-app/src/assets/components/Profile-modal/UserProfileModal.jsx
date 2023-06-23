@@ -7,7 +7,11 @@ import { Link } from 'react-router-dom';
 
 
 
-function UserProfileModal() {
+function UserProfileModal(props) {
+
+  const change=()=>{
+    window.location.href ="../user-event-created/0"
+  }
 
 
   return (
@@ -21,11 +25,11 @@ function UserProfileModal() {
             <ModalHeader>
               <ModalDetails>
                 <Img>
-                  <Src src={profile} alt="Profile" />
+                  <Src src={props.profile} alt="Profile" />
                 </Img>
                 <ProfileName>
-                  <span>Tochukwu Ezinne</span>
-                  <p>tochukwuezinne@gmail.com</p>
+                  <span>{props.name}</span>
+                  <p>{props.email}</p>
                 </ProfileName>
               </ModalDetails>
               <ModalInfo> 
@@ -40,7 +44,7 @@ function UserProfileModal() {
             <ModalInfo> 
                  <PaymentImg><Link to="/login"><img src={paymentImg}/></Link>
                  </PaymentImg> 
-                 <Link to="../user-event-created/:id" style={{textDecoration:"none"}}>
+                 <Link onClick={change}  style={{textDecoration:"none"}} >
                  <ModalText><p>My Events</p>
                  </ModalText></Link>
 

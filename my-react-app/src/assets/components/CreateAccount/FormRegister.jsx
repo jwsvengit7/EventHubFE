@@ -22,7 +22,9 @@ const FormRegister = () => {
   });
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
+
   const [passwordMatch, setPasswordMatch] = useState(true);
+
 
 
   const handleChange = (event) => {
@@ -38,7 +40,7 @@ const FormRegister = () => {
   const handleUrlChange = (event) => {
     const selectedOption = event.target.value;
     setUrl(selectedOption);
-  };
+  }; 
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -54,7 +56,11 @@ const FormRegister = () => {
     } else {
       try {
         setLoading(true);
+
+   
+
         const response = await axios.post(`http://localhost:${PORT}/api/v1/auth/register/${url}`, formData);
+
         setLoading(false);
         const result = response.data;
   
@@ -86,7 +92,11 @@ const FormRegister = () => {
          <FormDiv>
           <Form onSubmit={handleSubmit}>
             <h2>Create an account</h2>
+
+            <p style={{margin:"0px",marginBottom:"50px"}}>Event Goer Registration</p>
+
             <p style={{margin:"0px",marginBottom:"50px"}}>Connect To All Events Around You</p>
+
            
 
             <Fieldset>

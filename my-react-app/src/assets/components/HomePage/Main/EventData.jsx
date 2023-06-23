@@ -1,7 +1,10 @@
 import { EventDatas,ContentEvent } from "../../Styled/Styled";
 function EventData(props){
+    const handleClick=(event)=>{
+        window.location.href="../app/event-details/"+event
+    }
     return (
-    <EventDatas>
+    <EventDatas style={{cursor:"pointer"}} onClick={(e)=>handleClick(props.id)}>
       <img src={props.image} />
                     <ContentEvent>
                         <div className={props.date}>

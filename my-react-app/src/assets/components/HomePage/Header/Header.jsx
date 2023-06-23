@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 
 export default function Header(){
     const TOKEN = localStorage.getItem("TOKEN");
+   
     return (
         <>
+
+
         <HeaderStyle>
             <Headers>
             <LogoDiv><h1 className='eventLogo'>Event</h1></LogoDiv>
@@ -14,7 +17,11 @@ export default function Header(){
                 
                 {(TOKEN==null) ? <Link className='link-login' to="/login">Login</Link> :<Profile /> }
                 
-                <Button><Link className='link-createvent' to="/createvent"> Create Event </Link></Button>
+
+                <Link to="../app/event" ><Button>Create Event</Button></Link>
+
+           
+
             </Account>
             </Headers>
         </HeaderStyle>

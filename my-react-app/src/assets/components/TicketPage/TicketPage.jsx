@@ -5,11 +5,15 @@ import Footer from '../HomePage/Footer/Footer'
 
 function TicketPage() {
   return (
-    <div>
+
+    <>
     <Header />
     <TicketForm />
+    
     <Footer/>
-    </div>
+    </>
+
+
   )
 }
 

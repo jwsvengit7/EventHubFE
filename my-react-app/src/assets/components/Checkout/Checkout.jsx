@@ -3,7 +3,7 @@ import Footer from "../HomePage/Footer/Footer";
 import Header from "../HomePage/Header/Header";
 import { BannerDiv, Divs,GobackDiv, EventName,UpcomingEvents,EvnetsBody,Fieldset, ButtonForm } from "../Styled/Styled";
 
-export default function Chekout(){
+export default function Checkout(){
     const handleChange=()=>{
         alert(1)
     }
@@ -25,7 +25,7 @@ return (
     <UpcomingEvents>
             <EvnetsBody>
                
-                <center style={{marginBottom:"100px"}}><h1 style={{fontFamily:"sans-serif",fontSize:"50px"}}>Chekout</h1>
+                <center style={{marginBottom:"100px"}}><h1 style={{fontFamily:"sans-serif",fontSize:"50px"}}>Checkout</h1>
                 <span style={{color:"#ccc"}}>Time Left 5:11</span>
                 </center>
                 <RoleCheckout>

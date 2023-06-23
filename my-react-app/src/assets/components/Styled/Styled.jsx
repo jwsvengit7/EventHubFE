@@ -17,7 +17,7 @@ width:85%;
 height:auto;
 display:flex;
 justify-content:space-between;
-align-items:center;
+align-items:center; = 
 `
 export const LogoDiv = styled.div`
 width:25%;
@@ -178,6 +178,7 @@ width:100%;
 height:auto;
 display:flex;
 flex-direction:column;
+background:#f8f8f8;
 align-items:center;
 `
 export const EvnetsBody =styled.div`
@@ -731,6 +732,157 @@ height: auto;
 export const EventMap =styled.div`
 width: 100%;
 `
+
+
+
+export const ContentText =styled.div`
+margin-top:70px;
+ display:flex;
+justify-content:space-between;
+align-item:center;
+
+button{
+   color:black;
+   width:100px;
+   height:30px;
+   margin:40px
+}
+
+
+`
+
+export const ContentBox = styled.div`
+background: rgba(0, 50, 47, 0.05);
+display:flex;
+justify-content:space-between;
+width:100%;
+height:auto;
+padding:50px;
+
+border-bottom:1px solid #C4C4C4;
+button{
+ margin-left:400px;
+ text-align:center;
+ background: rgba(255, 87, 34, 1);
+ border:none;
+
+
+}
+
+` 
+
+
+export const spanDiv = styled.div`
+color:blue;
+display:flex
+align-items:center;
+`
+
+export const Content = styled.div`
+width:95%;
+height:auto;
+margin-bottom:100px;
+padding-top:40px;
+
+` 
+export const Box = styled.div`
+display:flex;
+justify-content:space-evenly;
+align-items:center;
+text-align:center;
+width:200px;
+height:60px;
+margin:5px;
+background:#FFFFFF;
+`
+
+export const T = styled.div`
+margin-top:100px;
+font-weight: 700;
+font-size: 24px;
+line-height: 33px;
+color: #000000;
+`
+
+export const Fieldsets = styled.fieldset`
+margin-top:20px;
+height:50px;
+width:40%;
+border: 1px solid rgba(37, 45, 66, 0.29);
+border-radius: 4px;
+box-sizing:box;
+
+input{
+width:100%;
+height:20px;
+border:0px;
+outline:none;
+font-size:15px;
+
+
+}
+
+`
+
+
+export const Forms =styled.form`
+
+
+display:flex;
+backgroud:blue;
+justify-content:space-between;
+align-items:center;
+
+
+
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+`
+export const ContentBackground =styled.div`
+width:100%;
+height:auto;
+display:flex;
+justify-content:center`
+
+export const Items =styled.div`
+width:100%;
+height:70px;
+margin-bottom:30px;
+margin-left:10px;
+
+
+`
+
+
+export const ContainerTicket =styled.div`
+width:100%;
+`
+
+
+
+export const DivTicket=styled.div`
+width:83%;
+
+`
+export const TextTicket =styled.div`
+color:white;
+width:25%;
+height:100px;
+display:flex;
+align-items:center;
+font-size:18px;
+margin-top:50px;
+font-weight:600;
+text-decoration:none;
+  `
+ export const Span = styled.div`
+  color:white;
+  font-size:56px;
+  font weight:700px;
+  margin-top:130px;
+  `
+ 
+
 export const SetUp2 =styled.div`
   width: 85%;
   height: auto;
@@ -770,9 +922,10 @@ export const EditBox =styled.div`
   border: 1px solid #101828;
   border-radius: 6px;
 `
-export const AllEvent =styled.div`
+export const AllEvent =styled.a`
   margin-top: 30px;
   margin-left: 24px;
+  
 `
 export const Line = styled.div`
   width: 85%;
@@ -785,7 +938,7 @@ export const OtherConfirmation =styled.div`
   margin-bottom: 50px;
 `
 export const TheDetails =styled.div`
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 `
 export const TheDetails2 =styled.div`
   margin-bottom: 26px;
@@ -835,7 +988,7 @@ export const CreatedEvents = styled.div`
   
   width: 320px;
   height: 230px;
-  background: green;
+  background: white;
   margin-right: 2%;
   img{
     width:100%;
@@ -873,10 +1026,33 @@ export const Active =styled.div`
   border-radius: 16px;
   p{
     font-weight: 400;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 22px;
     letter-spacing: 0.15px;
     color: #34A853;
+  }
+`
+export const InActive =styled.div`
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ 
+  gap: 4px;
+  width: 95px;
+  height: 30px;
+  background: #F6FEF9;
+  border: 1px solid #A6F4C5;
+  border-radius: 16px;
+  a{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.15px;
+    text-decoration:none;
+    color: red;
   }
 `
 export const TicketSold =styled.div`
@@ -884,10 +1060,12 @@ export const TicketSold =styled.div`
   height: 22px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 22px;
   letter-spacing: 0.15px;
   text-decoration-line: underline;
   color: #FF5722;
+  text-decoration:none
 
 `
+

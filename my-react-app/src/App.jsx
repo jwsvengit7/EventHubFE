@@ -28,7 +28,6 @@ import SearchBar from './assets/components/Dashboard/CreateEvent/EventSearch/Sea
 import Confirmation from "./assets/components/ConfirmationDetails/Confirmation.jsx";
 import CreateEvent from "./assets/components/Dashboard/CreateEvent/CreateEvent.jsx";
 import AllEventCreated from "./assets/components/AllEventsCreated/AllEventCreated.jsx";
-import { I } from './assets/components/Styled/Styled'
 import RegistrationAlert from "./assets/components/Alert-Modals/RegistrationAlert.jsx";
 
 
@@ -64,7 +63,7 @@ function App() {
     <Route path="/app/setup-account" element={<PaymentSetup />} />
     <Route path="/app/account" element={<Information />} />
     <Route path="/ticket-modal" element={<TicketModel />} />
-    <Route path="/app/event-details" element={<EventDetails />} />
+    <Route path="/app/event-details/:id" element={<EventDetails />} />
     <Route path="/user-profile-modal" element={<UserProfileModal />} />
     <Route path="/search-bar" element={<SearchBar />} />
     <Route path="/user-event-created/:id" element={<AllEventCreated />} />

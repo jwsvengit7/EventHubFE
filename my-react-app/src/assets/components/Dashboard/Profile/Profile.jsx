@@ -2,29 +2,45 @@ import styled from "styled-components";
 import profile from '../../HomePage/image/event_1.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import UserProfileModal from "../../Profile-modal/UserProfileModal";
 
+
 const Profile = () => {
+  const userdetails = JSON.parse(localStorage.getItem("userDetails"));
   const [isShown, setIsShown] = useState(false);
+  const [username, setUser] = useState("");
+  const [arrs, setUsers] = useState([]);
+
+  useEffect(() => {
+
+  
+      const Name = userdetails.userFullName;
+      const namesArray = Name.split(" ");
+      setUser(namesArray[0]);
+      setUsers(namesArray);
+    
+  }, []);
 
   const handleClick = () => {
     setIsShown(!isShown);
-
   };
+
 
   return (
     <>
       <ProfileRow onClick={handleClick}>
         <Round>
-          <Img src={profile} alt="logo" />
+          <Img src={userdetails.imageUrl} alt="logo" />
         </Round>
         <span>
-          Temple Jackson &nbsp;
+
+       
+          {username} &nbsp;
           <FontAwesomeIcon icon={isShown ? faChevronUp : faChevronDown} />
         </span>
       </ProfileRow>
-      {isShown && <UserProfileModal />}
+      {isShown && <UserProfileModal name={userdetails.userFullName} email={userdetails.userEmail} profile={userdetails.imageUrl} />}
     </>
   );
 };

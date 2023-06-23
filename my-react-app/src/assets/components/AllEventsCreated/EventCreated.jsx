@@ -1,5 +1,5 @@
 import {UpcomingEvents, SetUp2, ConfirmTitle, SetUp3, TheDetails2, Filter, FilterContent, HorLine, TheContent,
-    CreatedEvents, FirstDetails, SecondDetails, ThirdDetails, Active,InActive, TicketSold} from "../Styled/Styled.jsx";
+    CreatedEvents, FirstDetails, SecondDetails, ThirdDetails, Active,InActive, TicketSold, Loader} from "../Styled/Styled.jsx";
 import './EventCreated.css'
 import {GrFormFilter} from "react-icons/gr";
 import picture from '../HomePage/image/image-2.png'
@@ -8,6 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useParams,Link } from 'react-router-dom';
+import preloader from '../CreateAccount/image/preloader.gif'
 
 export default function EventCreated(){
 const TOKEN =localStorage.getItem("TOKEN");
@@ -35,12 +36,14 @@ const [loading,setLoading] = useState(false)
           }
     }).then((response)=>{
         setList(response.data.data.content)
+        setLoading(false)
 
     })
 
 
 }catch(e){
     console.log(e)
+    setLoading(false)
 }
 },[])
     
@@ -68,6 +71,14 @@ const [loading,setLoading] = useState(false)
                        </FilterContent>
                    </Filter>
                </SetUp2>
+               {(loading) ?
+  
+  <center>
+    <Loader style={{margin:"20px"}} src={preloader}></Loader>
+  </center>
+
+
+: <>
                {events.map((val,index)=>{
                 return(
                     <SetUp3 key={val.id}  style={{marginBottom:"20px"}}>
@@ -115,6 +126,10 @@ const [loading,setLoading] = useState(false)
                 )
 
                })}
+
+               </>
+
+            }
               
            </UpcomingEvents>
         </div>

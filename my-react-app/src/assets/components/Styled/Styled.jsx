@@ -178,6 +178,7 @@ width:100%;
 height:auto;
 display:flex;
 flex-direction:column;
+background:#f8f8f8;
 align-items:center;
 `
 export const EvnetsBody =styled.div`
@@ -986,7 +987,7 @@ export const CreatedEvents = styled.div`
   
   width: 320px;
   height: 230px;
-  background: green;
+  background: white;
   margin-right: 2%;
   img{
     width:100%;

@@ -5,12 +5,12 @@ import { useState } from "react";
 import axios from "axios";
 
 import arrow from '../image/svg/Arrow 1.svg'
-import image from '../image/event_1.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleDown, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import EventData from './EventData';
-import { BannerDiv,ButtonArrow,ButtonFilter,ButtonLoad,Div,DivRoleContent,Events,EvnetsBody,InsideDiv,Label,PositionForm, RoleEventFilter, UpcomingEvents } from '../../Styled/Styled';
+import { BannerDiv,ButtonArrow,ButtonFilter,ButtonLoad,Div,DivRoleContent,Events,EvnetsBody,InsideDiv,Label,Loader,PositionForm, RoleEventFilter, UpcomingEvents } from '../../Styled/Styled';
 import styled from 'styled-components';
+import preloader from '../../CreateAccount/image/preloader.gif'
 
 
 export default function Main(){
@@ -35,63 +35,8 @@ export default function Main(){
             console.log(e)
         }
     },[])
-    const event = [
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        }
-
-    ]
+   
+  
 
     return (
         <>
@@ -142,6 +87,12 @@ export default function Main(){
                     </Div>
                 </RoleEventFilter>
 
+                {(loading) ? <>
+                    <center><Loader src={preloader} alt="" ></Loader></center>
+                <h1></h1>
+                </>
+                :
+
                 <Events>
                     {console.log(events)}
                     {events.map((val,index)=>{
@@ -153,7 +104,8 @@ export default function Main(){
 
                         return (
                             <EventData
-                            key={index} 
+                            key={val.id} 
+                            id={val.id}
                             eventName="eventName"
                             image ={val.bannerUrl}
                             name={val.title}
@@ -167,6 +119,7 @@ export default function Main(){
                     })
                     }
                 </Events>
+}
 
                 <center>
                 <ButtonLoad>

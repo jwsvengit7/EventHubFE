@@ -36,7 +36,7 @@ export default function ConfirmationDetails(){
                 const val = response.data.data.category;
                 const change = val.replaceAll("_", " ");
                 setCategory(change);
-          
+                console.log(response.data.data.active)
                 if (response.data.data.active === true) {
                   setButton(true);
                 }
@@ -162,10 +162,7 @@ export default function ConfirmationDetails(){
                        
                     </TheDetails>
 
-                    {(!showButton) ? "":<ButtonForm onClick={handleSendAndPublish}>
-                        Send & Publish
-                    </ButtonForm> }
-                  
+                    {(showButton) ? "":<ButtonForm onClick={handleSendAndPublish}>Send & Publish</ButtonForm> }
 
 </>
                             }

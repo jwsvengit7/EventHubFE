@@ -13,6 +13,10 @@ import axios from 'axios';
 
   
 export default function EventDetail(){
+
+    const home=()=>{
+        window.location.href="/"
+    }
     const TOKEN=localStorage.getItem("TOKEN")
     const { id } =useParams()
     const [loading, setLoading] = useState(false);
@@ -46,15 +50,16 @@ export default function EventDetail(){
   
     return (
         <div style={{background:"#f8f8f8",paddingBottom:"50px"}}>
-            <BannerDiv>
-               <GobackDiv>
+         <BannerDiv >
+
+               <GobackDiv onClick={home} style={{cursor:"pointer"}}>
                 <Divs>
                     <p className='back'>← Go Back</p>
                 <EventName>
                     <h1 className='h1'>{event.title}</h1>
                 </EventName>
                 <Caption>
-                    <p className='details'>{event.description}</p>
+                    <p className='details'>{event.caption}</p>
                 </Caption>
                 </Divs>
                 
@@ -129,3 +134,5 @@ export default function EventDetail(){
     )
     
 }
+
+

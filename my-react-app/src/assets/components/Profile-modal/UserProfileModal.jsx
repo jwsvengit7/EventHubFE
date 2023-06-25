@@ -8,10 +8,38 @@ import { Link } from 'react-router-dom';
 
 
 function UserProfileModal(props) {
+  const TOKEN=localStorage.getItem("TOKEN")
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const change=()=>{
-    window.location.href ="../user-event-created/0"
+    window.location.href ="http://localhost:5173/user-event-created/0"
   }
+
+
+  // const handleFileSelect = (event) => {
+  //   event.persist();
+  //   setSelectedFile(event.target.files[0]);
+ 
+  //   console.log(selectedFile)
+  //   console.log(event.target.files[0]);
+  // }
+
+  // const handleUpload = () => {
+  //   const formData = new FormData();
+  //   formData.append('file', selectedFile);
+
+  //   axios.post("http://localhost:8999/api/v1/user/upload", formData, {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Authorization': `Bearer ${TOKEN}`
+  //     }
+  //   }).then((response) => {
+  //     // Handle the response
+  //   }).catch((error) => {
+  //     // Handle the error
+  //   });
+  
 
 
   return (
@@ -25,15 +53,24 @@ function UserProfileModal(props) {
             <ModalHeader>
               <ModalDetails>
                 <Img>
-                  <Src src={props.profile} alt="Profile" />
+                <Src  src={props.profile} alt="Profile" />
+                  {/* <input
+                  type="file"
+                  style={{ display: "none" }}
+                  id="fileUpload"
+                  name="file"
+                  onChange={handleFileSelect}
+                />
+                    <button onClick={handleUpload}>Upload</button> */}
                 </Img>
+          
                 <ProfileName>
                   <span>{props.name}</span>
                   <p>{props.email}</p>
                 </ProfileName>
               </ModalDetails>
                 <ModalInfo>
-                    <PaymentImg><Link to="/login"><img src={paymentImg}/></Link>
+                    <PaymentImg><Link to="/"><img src={paymentImg}/></Link>
                     </PaymentImg>
                     <Link to="../" style={{textDecoration:"none"}}>
                         <ModalText><p>Home</p>
@@ -42,16 +79,16 @@ function UserProfileModal(props) {
 
                 </ModalInfo>
               <ModalInfo> 
-                 <PaymentImg><Link to="/login"><img src={paymentImg}/></Link>
+                 <PaymentImg><Link to="http://localhost:5173/app/setup-account"><img src={paymentImg}/></Link>
                  </PaymentImg> 
-                 <Link to="../app/account" style={{textDecoration:"none"}}>
+                 <Link to="http://localhost:5173/app/setup-account" style={{textDecoration:"none"}}>
                  <ModalText><p>Payment Account</p>
                  </ModalText></Link>
 
                 
             </ModalInfo>
             <ModalInfo> 
-                 <PaymentImg><Link to="/login"><img src={paymentImg}/></Link>
+                 <PaymentImg><Link to="http://localhost:5173/user-event-created/0"><img src={paymentImg}/></Link>
                  </PaymentImg> 
                  <Link onClick={change}  style={{textDecoration:"none"}} >
                  <ModalText><p>My Events</p>
@@ -60,10 +97,10 @@ function UserProfileModal(props) {
                 
             </ModalInfo>
             <ModalInfo> 
-                 <LogOutLogo> <Link to="/login"><img src={logoutLogo}/></Link>
+                 <LogOutLogo> <Link to="http://localhost:5173/logout"><img src={logoutLogo}/></Link>
                  </LogOutLogo> 
 
-                 <Link to="../logout" style={{textDecoration:"none"}}>
+                 <Link to="http://localhost:5173/logout" style={{textDecoration:"none"}}>
                  <ModalText><p style={{display:"flex", justifyContent:"flex-start"}}>Logout</p>
                  </ModalText>
                  </Link>
@@ -142,7 +179,7 @@ const ModalDetails = styled.div`
   border-bottom: 1px solid #d0d5dd;
 `;
 
-const Img = styled.div`
+const Img = styled.form`
   width: 48px;
   height: 48px;
   border-radius: 50%;

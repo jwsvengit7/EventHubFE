@@ -17,7 +17,7 @@ width:85%;
 height:auto;
 display:flex;
 justify-content:space-between;
-align-items:center;
+align-items:center; = 
 `
 export const LogoDiv = styled.div`
 width:25%;
@@ -178,15 +178,14 @@ width:100%;
 height:auto;
 display:flex;
 flex-direction:column;
-align-items:center;
 background:#f8f8f8;
+align-items:center;
 `
 export const EvnetsBody =styled.div`
 width:85%;
 height:auto;
 `
-export const RoleEventFilter = styled.div
-`
+export const RoleEventFilter = styled.div`
 width:100%;
 display:flex;
 justify-content:space-between;
@@ -434,8 +433,7 @@ select{
 
 `
 
-export const ButtonForm =styled.button
-`
+export const ButtonForm =styled.button`
 width: 100%;
 height: 48px;
 outline:none;
@@ -454,15 +452,14 @@ font-size:17px;
 }
 `
 
-export const ButtonFormWhite =styled.button
-`
+export const ButtonFormWhite =styled.button`
 width: 100%;
 height: 48px;
 outline:none;
 border:0px;
 margin-bottom:30px;
 
-background: pink 
+background: pink; 
 
 border-radius: 4px;
 transition-duration:0.5s;
@@ -542,14 +539,14 @@ export const ModalCalender =styled.div`
 margin-bottom:30px
 `
 export const DetailedEvent =styled.div`
-width:85%;
+width:100%;
 height: auto;
 margin-top: 100px;
 display: flex;
 justify-content: space-between;
 `
 export const EventDate = styled.div`
-width: 707px;
+width: 100%;
 height: 76px;
 font-weight: 600;
 font-size: 20px;
@@ -654,3 +651,421 @@ align-items: center;
 font-size:13px
 
 `
+
+export const Description = styled.div`
+width: 567px;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+export const DetailedDescription = styled.div`
+margin-top: 24px;
+width: 100%;
+height: auto;
+font-weight: 400;
+font-size: 16px;
+line-height: 27px;
+color: #252D42;
+`
+export const EventDesc = styled.div`
+width: 100%;
+height: auto;
+`
+export const Divs2 =styled.div`
+width:60%;
+height:auto;
+`
+export const EventLocation =styled.div`
+width: 100%;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+
+export const StartDate = styled.div`
+width: 98px;
+height: 78px;
+`
+export const StartDateName = styled.div`
+width:98px;
+font-weight: 600;
+font-size: 20px;
+line-height: 37px;
+color: #252D42;
+`
+export const StartDateValue = styled.div`
+width:98px;
+font-weight: 200;
+font-size: 16px;
+line-height: 37px;
+color: #252D42;
+`
+export const MapOfEvents =styled.div`
+margin-top: 24px;
+width: 100%;
+height: 385px;
+div{
+ position:relative   
+}
+`
+export const ShareSocial =styled.div`
+margin-top: 85px;
+width: 100%;
+height: 44px;
+font-weight: 800;
+font-size: 32px;
+line-height: 44px;
+color: #252D42;
+`
+export const OtherEvents =styled.div`
+width: 100%;
+height: auto;
+`
+export const SecondDiv = styled.div`
+width: 37%;
+height: auto;
+`
+export const EventMap =styled.div`
+width: 100%;
+`
+
+
+
+export const ContentText =styled.div`
+margin-top:70px;
+ display:flex;
+justify-content:space-between;
+align-item:center;
+
+button{
+   color:black;
+   width:100px;
+   height:30px;
+   margin:40px
+}
+
+
+`
+
+export const ContentBox = styled.div`
+background: rgba(0, 50, 47, 0.05);
+display:flex;
+justify-content:space-between;
+width:100%;
+height:auto;
+padding:50px;
+
+border-bottom:1px solid #C4C4C4;
+button{
+ margin-left:400px;
+ text-align:center;
+ background: rgba(255, 87, 34, 1);
+ border:none;
+
+
+}
+
+` 
+
+
+export const spanDiv = styled.div`
+color:blue;
+display:flex
+align-items:center;
+`
+
+export const Content = styled.div`
+width:95%;
+height:auto;
+margin-bottom:100px;
+padding-top:40px;
+
+` 
+export const Box = styled.div`
+display:flex;
+justify-content:space-evenly;
+align-items:center;
+text-align:center;
+width:200px;
+height:60px;
+margin:5px;
+background:#FFFFFF;
+`
+
+export const T = styled.div`
+margin-top:100px;
+font-weight: 700;
+font-size: 24px;
+line-height: 33px;
+color: #000000;
+`
+
+export const Fieldsets = styled.fieldset`
+margin-top:20px;
+height:50px;
+width:40%;
+border: 1px solid rgba(37, 45, 66, 0.29);
+border-radius: 4px;
+box-sizing:box;
+
+input{
+width:100%;
+height:20px;
+border:0px;
+outline:none;
+font-size:15px;
+
+
+}
+
+`
+
+
+export const Forms =styled.form`
+
+
+display:flex;
+backgroud:blue;
+justify-content:space-between;
+align-items:center;
+
+
+
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+`
+export const ContentBackground =styled.div`
+width:100%;
+height:auto;
+display:flex;
+justify-content:center`
+
+export const Items =styled.div`
+width:100%;
+height:70px;
+margin-bottom:30px;
+margin-left:10px;
+
+
+`
+
+
+export const ContainerTicket =styled.div`
+width:100%;
+`
+
+
+
+export const DivTicket=styled.div`
+width:83%;
+
+`
+export const TextTicket =styled.div`
+color:white;
+width:25%;
+height:100px;
+display:flex;
+align-items:center;
+font-size:18px;
+margin-top:50px;
+font-weight:600;
+text-decoration:none;
+  `
+ export const Span = styled.div`
+  color:white;
+  font-size:56px;
+  font weight:700px;
+  margin-top:130px;
+  `
+ 
+
+export const SetUp2 =styled.div`
+  width: 85%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+`
+export const SetUp3 =styled.div`
+  width: 83%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 1%
+`
+export const ConfirmTitle =styled.div`
+  width: 60%;
+  height: auto;
+  margin-top: 0;
+`
+export const EditDetails =styled.div`
+  margin-top:10px;
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-content: center;
+`
+export const EditBox =styled.div`
+  margin-top: 30px;
+  align-items: center;
+  width: 111px;
+  height: 47px;
+  display: flex;
+  justify-content: center;
+  background: #F2F4F7;
+  border: 1px solid #101828;
+  border-radius: 6px;
+`
+export const AllEvent =styled.a`
+  margin-top: 30px;
+  margin-left: 24px;
+  
+`
+export const Line = styled.div`
+  width: 85%;
+  margin-top: 25px; 
+  border: 1px solid #C4C4C4;
+`
+export const OtherConfirmation =styled.div`
+  width: 85%;
+  height: auto;
+  margin-bottom: 50px;
+`
+export const TheDetails =styled.div`
+  margin-bottom: 20px;
+`
+export const TheDetails2 =styled.div`
+  margin-bottom: 26px;
+  p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0.15px;
+    color: #667085;
+  }
+  span{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.15px;
+    color: #252D42;
+  }
+`
+export const Filter = styled.div`
+  width: 35%;
+  height: auto;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+`
+export const FilterContent =styled.div`
+  margin-right: 10px;
+  width: 35%;
+  height: 25%;
+  border: 1px solid #555A68;
+  border-radius: 5px;
+`
+export const HorLine =styled.div`
+  background: #EAECF0;
+  transform: rotate(-90deg);
+  width: 22px;
+  height: 2px;
+`
+export const TheContent =styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 7%;
+  padding-right: 7%;
+  height: 100%;
+`
+export const CreatedEvents = styled.div`
+  
+  width: 320px;
+  height: 230px;
+  background: white;
+  margin-right: 2%;
+  img{
+    width:100%;
+    height: 100%;
+  }
+`
+export const FirstDetails =styled.div`
+  width: 23%;
+  height: auto;
+`
+export const SecondDetails =styled.div`
+  width: 30%;
+  height: auto;
+`
+export const ThirdDetails =styled.div`
+  width: 12%;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  flex-direction:column;
+`
+export const Active =styled.div`
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 4px;
+  width: 65px;
+  height: 30px;
+  background: #F6FEF9;
+  border: 1px solid #A6F4C5;
+  border-radius: 16px;
+  p{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.15px;
+    color: #34A853;
+  }
+`
+export const InActive =styled.div`
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ 
+  gap: 4px;
+  width: 95px;
+  height: 30px;
+  background: #F6FEF9;
+  border: 1px solid #A6F4C5;
+  border-radius: 16px;
+  a{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.15px;
+    text-decoration:none;
+    color: red;
+  }
+`
+export const TicketSold =styled.div`
+  margin-bottom: 20px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+  text-decoration-line: underline;
+  color: #FF5722;
+  text-decoration:none
+
+`
+

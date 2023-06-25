@@ -52,9 +52,11 @@ const PaymentSetup = () => {
       console.log(data);
       setLoading(false)
       setAccountName(data.data[0].data.account_name)
+      
     })
     .catch(error => {
       setLoading(false)
+      swal("ALERT","Error ","error")
       console.log(error);
     });
   }
@@ -83,7 +85,7 @@ const PaymentSetup = () => {
       .then(response => {
         const data = response.data;
         console.log(data);
-        swal("ALERT",data.message,"success")
+        swal("ALERT","Account Have been added","success")
         setLoading(false);
       })
       .catch(error => {

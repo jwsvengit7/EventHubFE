@@ -1,11 +1,14 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import axios from 'axios';
 import swal from 'sweetalert';
 import preloader from './image/preloader.gif';
+import './css/register.css'
 
 import { Link } from "react-router-dom";
 import { BackgroundImage, ButtonForm, CenterDiv, Container, Fieldset, Form, FormDiv, Loader, Preloader } from "../Styled/Styled";
 
+// eslint-disable-next-line no-unused-vars
 const PORT = 8999;
 
 const FormRegister = () => {
@@ -20,25 +23,24 @@ const FormRegister = () => {
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
 
+  const [passwordMatch, setPasswordMatch] = useState(true);
+
+
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value
     }));
+    if (name === 'cpassword') {
+      setPasswordMatch(value === formData.password);
+    }
   };
   const handleUrlChange = (event) => {
     const selectedOption = event.target.value;
-    let url;
-  
-    if (selectedOption === 'eventGoer') {
-      setUrl(`http://localhost:${PORT}/api/v1/auth/register-event-goer`);
-    } else if (selectedOption === 'eventCreator') {
-      setUrl(`http://localhost:${PORT}/api/v1/auth/register-event-creator`);
-    }
-  
-
-  };
+    setUrl(selectedOption);
+  }; 
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -54,7 +56,11 @@ const FormRegister = () => {
     } else {
       try {
         setLoading(true);
-        const response = await axios.post(url, formData);
+
+   
+
+        const response = await axios.post(`http://localhost:${PORT}/api/v1/auth/register/${url}`, formData);
+
         setLoading(false);
         const result = response.data;
   
@@ -86,7 +92,11 @@ const FormRegister = () => {
          <FormDiv>
           <Form onSubmit={handleSubmit}>
             <h2>Create an account</h2>
+
             <p style={{margin:"0px",marginBottom:"50px"}}>Event Goer Registration</p>
+
+            <p style={{margin:"0px",marginBottom:"50px"}}>Connect To All Events Around You</p>
+
            
 
             <Fieldset>
@@ -155,29 +165,31 @@ const FormRegister = () => {
               <Fieldset>
                 <legend>Password</legend>
                 <input
-                  type="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  name="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    name="password"
                 />
               </Fieldset>
 
               <Fieldset>
                 <legend>Confirm Password</legend>
                 <input
-                  type="password"
-                  value={formData.cpassword}
-                  onChange={handleChange}
-                  name="cpassword"
+                    type="password"
+                    value={formData.cpassword}
+                    onChange={handleChange}
+                    name="cpassword"
                 />
+                {!passwordMatch && <p className="error">***Passwords do not match***</p>}
               </Fieldset>
+
 
 
             <ButtonForm>
               Create Account
             </ButtonForm>
             <CenterDiv>
-              <p>Already Registerd? <Link to="/login">Login</Link></p>
+              <p>Already Registered ? <Link to="/login">Login</Link></p>
             </CenterDiv>
           </Form>
         </FormDiv>

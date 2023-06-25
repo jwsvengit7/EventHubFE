@@ -1,23 +1,65 @@
 import './css/EventDetails.css'
-import styled from 'styled-components'
 
-
-import { BannerDiv,EventDate, UpcomingEvents,EvnetsBody,ButtonForm,ButtonFormWhite, GobackDiv, Divs, EventName, Caption, BuyModal, ModalCalender, DetailedEvent } from '../Styled/Styled'
+import MapOfEvent from "./MapOfEvent.jsx";
+import MoreEvents from "./MoreEvents.jsx";
+import { BannerDiv,EventDate, UpcomingEvents,EvnetsBody,ButtonForm,ButtonFormWhite,
+    GobackDiv, Divs, EventName, Caption, BuyModal, ModalCalender, DetailedEvent, Divs2,
+    EventDesc, Description, DetailedDescription, StartDate, StartDateName, StartDateValue,
+    EventMap, EventLocation, OtherEvents, ShareSocial, MapOfEvents, SecondDiv } from '../Styled/Styled'
+import {Link, useParams} from "react-router-dom";
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 
 
   
 export default function EventDetail(){
+
+    const home=()=>{
+        window.location.href="/"
+    }
+    const TOKEN=localStorage.getItem("TOKEN")
+    const { id } =useParams()
+    const [loading, setLoading] = useState(false);
+    const [event,setEvent] =useState([])
+    const [appUser, setAppUser] = useState([]);
+    const [allTickets,setAllTickets] =useState([])
+    const [category,setCategory] =useState("")
+    useEffect(()=>{
+        try {
+
+          
+            setLoading(true);
+            axios.get(`http://localhost:8999/events/view-event/${id}`, {
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': `Bearer ${TOKEN}`
+              },
+            }).then((response) => {
+              setLoading(false);
+              setEvent(response.data.data);
+              setAppUser(response.data.data.appUser);
+              console.log(response.data.data);
+            });
+          } catch (e) {
+            setLoading(false);
+            console.log(e);
+          }          
+
+    },[])
+  
     return (
         <div style={{background:"#f8f8f8",paddingBottom:"50px"}}>
-            <BannerDiv>
-               <GobackDiv>
+         <BannerDiv >
+
+               <GobackDiv onClick={home} style={{cursor:"pointer"}}>
                 <Divs>
                     <p className='back'>← Go Back</p>
                 <EventName>
-                    <h1 className='h1'>Eko All Night Pool Party Festival</h1>
+                    <h1 className='h1'>{event.title}</h1>
                 </EventName>
                 <Caption>
-                    <p className='details'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam</p>
+                    <p className='details'>{event.caption}</p>
                 </Caption>
                 </Divs>
                 
@@ -46,29 +88,29 @@ export default function EventDetail(){
                     <Divs2>
                         <EventDesc>
                             <Description>Description</Description>
-                            <DetailedDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac adipiscing nibh nisi auctor sagittis risus eu ac. Neque et pulvinar cum mi sed ullamcorper ornare morbi aliquam. Neque, quam natoque feugiat quisque. Adipiscing viverra egestas lorem convallis. Interdum ipsum fusce elementum dolor a semper. Lectus elit ac viverra lorem nunc vitae. Laoreet morbi auctor ultrices augue interdum elementum facilisis in proin. Commodo auctor adipiscing id sit leo. Et pulvinar et ornare aliquam dignissim. Ut semper pulvinar nulla est nulla lectus. Tincidunt mauris eu mollis viverra eget. In dolor eget ridiculus venenatis. Eget elementum erat nisl justo turpis nulla. Rhoncus luctus amet, mi eu varius. Et id imperdiet malesuada sem eu viverra neque. A, dui morbi vitae placerat eget mi in rhoncus. In molestie elementum volutpat ac. Quisque arcu, egestas scelerisque egestas volutpat feugiat morbi nisi. Feugiat pulvinar vitae mauris ultrices diam molestie mattis vel mi. Fermentum integer tortor orci ut consequat consectetur lectus. Pretium odio enim elementum placerat vel mauris turpis. Etiam amet, ornare sed dui elementum, suspendisse quis sapien. Id amet tempor, donec pulvinar. Consectetur ut mauris vitae, eget ultricies egestas non netus. Risus est pellentesque nibh diam malesuada tellus adipiscing in fermentum. Malesuada commodo fames turpis phasellus leo scelerisque interdum. Faucibus phasellus sit erat faucibus. Nibh porttitor mi nulla malesuada consequat sit neque.</DetailedDescription>
+                            <DetailedDescription>{event.description}.</DetailedDescription>
                         </EventDesc>
                         <EventDesc>
                             <p className='eventdate'>Date and Time</p>
                             <EventDate>
                                 <StartDate>
                                     <StartDateName>Start Date</StartDateName>
-                                    <StartDateValue>09/06/2022</StartDateValue>
+                                    <StartDateValue>{event.startDate}</StartDateValue>
                                 </StartDate>
                                 <StartDate>
                                     <StartDateName>End Date</StartDateName>
-                                    <StartDateValue>09/06/2022</StartDateValue>
+                                    <StartDateValue>{event.endDate}</StartDateValue>
                                 </StartDate>
                                 <StartDate>
                                     <StartDateName>Time</StartDateName>
-                                    <StartDateValue>09/06/2022</StartDateValue>
+                                    <StartDateValue>{event.startTime}</StartDateValue>
                                 </StartDate>
                             </EventDate>
                         </EventDesc>
                         <EventDesc>
                             <p className='eventdate'>How to contact the organizer</p>
-                            <p className='contactInfo'>Pleace visit <Link to="https://samplewebsite.com/contact-us">https://samplewebsite.com/contact-us</Link> or refer to the FAQ section for all questions.</p>
-                        </EventDesc>
+                            <p className='contactInfo'>Please email <a href={`mailto:${appUser.email}`}>{appUser.email}</a> or call {appUser.phone}</p>
+                    </EventDesc>
                     </Divs2>
                     <SecondDiv>
                         <EventMap>
@@ -92,3 +134,5 @@ export default function EventDetail(){
     )
     
 }
+
+

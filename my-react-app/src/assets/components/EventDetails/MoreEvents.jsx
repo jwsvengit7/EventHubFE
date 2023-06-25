@@ -2,7 +2,7 @@ import image from '../HomePage/image/event_1.png'
 import EventData from '../HomePage/Main/EventData';
 import { Events } from '../Styled/Styled';
 
-export default function Main(){
+export default function MoreEvents(){
     const event = [
         {
             text:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum molestias, atque nam quas soluta dolore ut,",

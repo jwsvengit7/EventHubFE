@@ -1,75 +1,42 @@
 
 import '../css/HomePage.css'
-import { Link } from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 import arrow from '../image/svg/Arrow 1.svg'
-import image from '../image/event_1.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleDown, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import EventData from './EventData';
-import { BannerDiv,ButtonArrow,ButtonFilter,ButtonLoad,Div,DivRoleContent,Events,EvnetsBody,InsideDiv,Label,PositionForm, RoleEventFilter, UpcomingEvents } from '../../Styled/Styled';
+import { BannerDiv,ButtonArrow,ButtonFilter,ButtonLoad,Div,DivRoleContent,Events,EvnetsBody,InsideDiv,Label,Loader,PositionForm, RoleEventFilter, UpcomingEvents } from '../../Styled/Styled';
 import styled from 'styled-components';
+import preloader from '../../CreateAccount/image/preloader.gif'
 
 
 export default function Main(){
-    const event = [
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
-        },
-        {
-            text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit vivamus penatibus viverra aliquam diam.",
-            name:"Event Name which can be long",
-            date:"Oct",
-            month:"Oct"
+    const [loading, setLoading] = useState(false);
+    const [events,setEvent] =useState([])
+
+    useEffect(()=>{
+        try {
+            setLoading(true);
+            axios.get(`http://localhost:8999/events/view-event/`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            }).then((response) => {
+                setLoading(false);
+                setEvent(response.data.data.content);
+                console.log(response.data.data.content);
+            })
+        }catch (e) {
+            setLoading(false);
+            console.log(e)
         }
-     
-    ]
+    },[])
+   
+  
 
     return (
         <>
@@ -120,24 +87,39 @@ export default function Main(){
                     </Div>
                 </RoleEventFilter>
 
+                {(loading) ? <>
+                    <center><Loader src={preloader} alt="" ></Loader></center>
+                <h1></h1>
+                </>
+                :
+
                 <Events>
-                    {event.map((val,index)=>{
+                    {console.log(events)}
+                    {events.map((val,index)=>{
+                        const date = new Date(val.startDate);
+                        const monthName = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(date);
+                        const realVal =monthName.substring(0,3);
+
+// Get the day of the week name
+
                         return (
                             <EventData
-                            key={index} 
+                            key={val.id} 
+                            id={val.id}
                             eventName="eventName"
-                            image ={image} 
-                            name={val.name} 
+                            image ={val.bannerUrl}
+                            name={val.title}
                             date="date" 
-                            text={val.text} 
-                            month={val.month}
-                            day={val.date}
+                            text={val.caption}
+                            month={realVal}
+                            day={date.getDay()}
                             />
                     
                         )
                     })
                     }
                 </Events>
+}
 
                 <center>
                 <ButtonLoad>

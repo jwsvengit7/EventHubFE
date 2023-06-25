@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -43,8 +44,14 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       
         console.log(result)
         localStorage.setItem("TOKEN",Token)
+        const userDetails=response.data.data
+        localStorage.setItem("userDetails",JSON.stringify(userDetails))
+        
          swal("ALERT",message,"success")
-         request_meethod("/app/dashboard")
+
+
+         request_meethod("/")
+
 
 
         

@@ -24,7 +24,7 @@ const Information = () => {
     window.location.replace("/login");
   }
 
-  const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Information = () => {
       .then((data) => {
         console.log(data);
         setAccounts(data.data.data);
-        console.log(accounts.length)
+        console.log(accounts)
         setLoading(false);
       })
       .catch((e) => {
@@ -63,17 +63,16 @@ const Information = () => {
               </Loader>
             ) : (
               <FormAccount>
-              
+
 
                   {
-                
-                accounts.length > 0 &&
-                  accounts.map((val, index) => (
-                    <React.Fragment key={index}>
+
+                    (accounts ==null) ? "" :<>
+
                       <Details>
                         <DiviNFO>
                           <p>Account Name</p>
-                          <h3>{val.accountName}</h3>
+                          <h3>{accounts.accountName}</h3>
                         </DiviNFO>
                         <AccountNFO>
                           <Link to="http://localhost:5173/app/update">
@@ -81,22 +80,23 @@ const Information = () => {
                           </Link>
                         </AccountNFO>
                       </Details>
-                      <Details>
+                        <Details>
                         <DiviNFO>
                           <p>Account Number</p>
-                          <h3>{val.accountNumber}</h3>
+                          <h3>{accounts.accountNumber}</h3>
                         </DiviNFO>
                         <AccountNFO></AccountNFO>
                       </Details>
                       <Details>
                         <DiviNFO>
                           <p>Bank</p>
-                          <h3>{val.bankName}</h3>
+                          <h3>{accounts.bankName}</h3>
                         </DiviNFO>
                         <AccountNFO></AccountNFO>
                       </Details>
-                    </React.Fragment>
-                  ))}
+                      </>
+
+                  }
               </FormAccount>
             )}
           </Setup>

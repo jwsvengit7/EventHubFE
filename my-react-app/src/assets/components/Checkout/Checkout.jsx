@@ -5,7 +5,7 @@ import { BannerDiv, Divs,GobackDiv, EventName,UpcomingEvents,EvnetsBody,Fieldset
 
 export default function Checkout(){
     const handleChange=()=>{
-        alert(1)
+
     }
 return (
     <>

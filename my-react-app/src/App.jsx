@@ -56,8 +56,6 @@ function App() {
     <Route path='/checkout' element={<Checkout />} />
     <Route path='/ticket-summary' element={<TicketSummary />}/>
     <Route path='/fund-wallet' element={<FundWalletPage />}/>
-    
-
 
     <Route path="/event/confirmation/:id" element={<Confirmation />} />
     <Route path="/app/setup-account" element={<PaymentSetup />} />
